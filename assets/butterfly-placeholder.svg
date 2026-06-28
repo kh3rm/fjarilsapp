@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 620" role="img" aria-labelledby="title desc">
+  <title id="title">Fjärilsbild saknas</title>
+  <desc id="desc">Dekorativ fjärilsplaceholder i varma färger.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f2e6"/>
+      <stop offset="1" stop-color="#dcebe9"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="620" fill="url(#bg)"/>
+  <circle cx="185" cy="118" r="145" fill="#f3ce70" opacity=".36"/>
+  <circle cx="724" cy="501" r="190" fill="#cfe1b9" opacity=".55"/>
+  <path d="M448 316C262 76 80 132 84 294c4 134 205 139 352 54Z" fill="#e8a548"/>
+  <path d="M472 316C658 76 840 132 836 294c-4 134-205 139-352 54Z" fill="#f3ce70"/>
+  <path d="M437 232c28-50 68-50 96 0 25 73 19 215-17 263-36 35-76 35-112 0-36-48-42-190 33-263Z" fill="#161410"/>
+  <circle cx="484" cy="190" r="34" fill="#161410"/>
+  <text x="450" y="555" text-anchor="middle" font-family="Inter, system-ui, sans-serif" font-size="36" font-weight="800" fill="#6d675b">Bild saknas</text>
+</svg>

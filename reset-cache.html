@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rensa app-cache – Annies fjärilar</title>
+  <style>
+    body { font-family: system-ui, sans-serif; min-height: 100vh; display: grid; place-items: center; margin: 0; background: #e9e3d3; color: #171410; }
+    main { max-width: 34rem; padding: 2rem; border: 1.5px solid #171410; border-radius: 1.25rem; background: #fff9ed; box-shadow: 0 18px 45px rgba(31,29,22,.12); }
+    h1 { margin-top: 0; font-size: clamp(2rem, 8vw, 3.2rem); line-height: .95; }
+    a { color: inherit; font-weight: 800; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Rensar app-cache…</h1>
+    <p id="status">Tar bort gamla service workers och cache-filer.</p>
+    <p><a href="./?v=1.5.34" id="go" hidden>Öppna appen igen</a></p>
+  </main>
+  <script>
+    (async () => {
+      const status = document.getElementById('status');
+      try {
+        if ('serviceWorker' in navigator) {
+          const regs = await navigator.serviceWorker.getRegistrations();
+          await Promise.all(regs.map((reg) => reg.unregister()));
+        }
+        if ('caches' in window) {
+          const keys = await caches.keys();
+          await Promise.all(keys.map((key) => caches.delete(key)));
+        }
+        status.textContent = 'Klart. Öppnar nya versionen…';
+        setTimeout(() => { window.location.href = './?v=1.5.34'; }, 600);
+      } catch (error) {
+        console.error(error);
+        status.textContent = 'Kunde inte rensa automatiskt. Använd länken nedan.';
+        document.getElementById('go').hidden = false;
+      }
+    })();
+  </script>
+</body>
+</html>

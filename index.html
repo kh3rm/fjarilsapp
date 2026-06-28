@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Annies fjärilar</title>
+    <meta
+      name="description"
+      content="Annies fjärilar: en mobilcentrerad svensk fjärilsguide med egna bilder och egna arter."
+    />
+    <meta name="theme-color" content="#e9e3d3" />
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="./manifest.webmanifest?v=1.5.34" />
+    <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.cdnfonts.com" crossorigin />
+    <link href="https://fonts.cdnfonts.com/css/latin-modern-roman" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css?v=1.5.34" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header" aria-labelledby="site-title">
+        <div class="header-wash" aria-hidden="true"></div>
+
+        <div class="header-content">
+          <div class="brand-lockup">
+            <h1 class="site-title" id="site-title">Annies fjärilar</h1>
+            <p class="site-subtitle">Identifiera, fotografera, samla.</p>
+          </div>
+
+          <nav class="view-tabs" aria-label="Växla vy">
+            <button class="tab-button is-active" type="button" data-view="butterflies" aria-pressed="true">Fjärilar</button>
+            <button class="tab-button" type="button" data-view="collection" aria-pressed="false">Samling</button>
+          </nav>
+
+          <div class="header-metrics" aria-label="Sammanfattning">
+            <div>
+              <strong id="metric-species">30</strong>
+              <span>arter</span>
+            </div>
+            <div>
+              <strong id="metric-collection">0</strong>
+              <span>i samlingen</span>
+            </div>
+          </div>
+        </div>
+
+        <button class="annie-button" id="annie-button" type="button" aria-label="Tryck på Annie för en liten animation">
+          <span class="annie-frame">
+            <img class="annie-img annie-img-open" src="assets/annie-refined-full-head.png?v=1.5.34" alt="Annie med lugna blå ögon, rosa hårband och ett brett tecknat tandgrin" />
+            <img class="annie-img annie-img-blink" src="assets/annie-refined-full-head-blink.png?v=1.5.34" alt="" aria-hidden="true" />
+          </span>
+        </button>
+
+        <div class="flight-stage" aria-hidden="true">
+          <svg class="flying-butterfly flying-butterfly--one" viewBox="0 0 160 125">
+            <g class="butterfly-tilt">
+              <g class="left-wing">
+                <path class="wing-main wing-orange" d="M77 58C47 7 13 12 11 45 9 75 44 79 76 63Z" />
+                <path class="wing-lower wing-gold" d="M75 65C52 79 42 111 65 115c18 3 25-20 18-48Z" />
+                <path class="wing-mark" d="M51 37c-13-8-25-2-28 10 13 0 22 4 28 12 5-7 6-15 0-22Z" />
+                <circle class="wing-dot" cx="56" cy="76" r="5" />
+              </g>
+              <g class="right-wing">
+                <path class="wing-main wing-honey" d="M83 58c30-51 64-46 66-13 2 30-33 34-65 18Z" />
+                <path class="wing-lower wing-cream" d="M85 65c23 14 33 46 10 50-18 3-25-20-18-48Z" />
+                <path class="wing-mark" d="M109 37c13-8 25-2 28 10-13 0-22 4-28 12-5-7-6-15 0-22Z" />
+                <circle class="wing-dot" cx="104" cy="76" r="5" />
+              </g>
+              <path class="butterfly-body" d="M75 42c3-8 8-12 11-1 4 19 3 43-2 61-3 8-8 8-11 0-5-18-4-41 2-60Z" />
+              <circle class="butterfly-head" cx="81" cy="38" r="6" />
+              <path class="antenna" d="M78 35C66 22 54 18 43 21" />
+              <path class="antenna" d="M84 35c12-13 25-17 36-14" />
+            </g>
+          </svg>
+
+          <svg class="flying-butterfly flying-butterfly--two" viewBox="0 0 160 125">
+            <g class="butterfly-tilt">
+              <g class="left-wing">
+                <path class="wing-main wing-blue" d="M77 58C47 7 13 12 11 45 9 75 44 79 76 63Z" />
+                <path class="wing-lower wing-sky" d="M75 65C52 79 42 111 65 115c18 3 25-20 18-48Z" />
+                <path class="wing-mark" d="M51 37c-13-8-25-2-28 10 13 0 22 4 28 12 5-7 6-15 0-22Z" />
+                <circle class="wing-dot" cx="56" cy="76" r="5" />
+              </g>
+              <g class="right-wing">
+                <path class="wing-main wing-milk" d="M83 58c30-51 64-46 66-13 2 30-33 34-65 18Z" />
+                <path class="wing-lower wing-blue-soft" d="M85 65c23 14 33 46 10 50-18 3-25-20-18-48Z" />
+                <path class="wing-mark" d="M109 37c13-8 25-2 28 10-13 0-22 4-28 12-5-7-6-15 0-22Z" />
+                <circle class="wing-dot" cx="104" cy="76" r="5" />
+              </g>
+              <path class="butterfly-body" d="M75 42c3-8 8-12 11-1 4 19 3 43-2 61-3 8-8 8-11 0-5-18-4-41 2-60Z" />
+              <circle class="butterfly-head" cx="81" cy="38" r="6" />
+              <path class="antenna" d="M78 35C66 22 54 18 43 21" />
+              <path class="antenna" d="M84 35c12-13 25-17 36-14" />
+            </g>
+          </svg>
+
+          <svg class="flying-butterfly flying-butterfly--three" viewBox="0 0 160 125">
+            <g class="butterfly-tilt">
+              <g class="left-wing">
+                <path class="wing-main wing-rose" d="M77 58C47 7 13 12 11 45 9 75 44 79 76 63Z" />
+                <path class="wing-lower wing-pink" d="M75 65C52 79 42 111 65 115c18 3 25-20 18-48Z" />
+                <path class="wing-mark" d="M51 37c-13-8-25-2-28 10 13 0 22 4 28 12 5-7 6-15 0-22Z" />
+                <circle class="wing-dot" cx="56" cy="76" r="5" />
+              </g>
+              <g class="right-wing">
+                <path class="wing-main wing-apricot" d="M83 58c30-51 64-46 66-13 2 30-33 34-65 18Z" />
+                <path class="wing-lower wing-cream" d="M85 65c23 14 33 46 10 50-18 3-25-20-18-48Z" />
+                <path class="wing-mark" d="M109 37c13-8 25-2 28 10-13 0-22 4-28 12-5-7-6-15 0-22Z" />
+                <circle class="wing-dot" cx="104" cy="76" r="5" />
+              </g>
+              <path class="butterfly-body" d="M75 42c3-8 8-12 11-1 4 19 3 43-2 61-3 8-8 8-11 0-5-18-4-41 2-60Z" />
+              <circle class="butterfly-head" cx="81" cy="38" r="6" />
+              <path class="antenna" d="M78 35C66 22 54 18 43 21" />
+              <path class="antenna" d="M84 35c12-13 25-17 36-14" />
+            </g>
+          </svg>
+        </div>
+      </header>
+
+      <main class="main-panel" id="content-panel" tabindex="-1" data-active-view="butterflies">
+        <section class="panel-view is-visible" id="view-butterflies" aria-labelledby="butterflies-title">
+          <div class="view-heading view-heading--compact">
+            <div>
+              <h2 class="section-title" id="butterflies-title">Fjärilar</h2>
+              <p class="section-intro">Sök på namn, färg eller miljö och jämför med bilderna.</p>
+            </div>
+          </div>
+
+          <div class="toolbar" role="search">
+            <label class="search-box">
+              <span class="sr-only">Sök art, färg eller miljö</span>
+              <input id="search-input" type="search" placeholder="Sök: gul, nässlor, blåvinge, äng..." autocomplete="off" />
+            </label>
+          </div>
+
+          <details class="custom-species-panel" id="custom-species-panel">
+            <summary>
+              <span class="summary-plus">+</span>
+              <span>Lägg till egen fjäril</span>
+            </summary>
+            <form id="custom-species-form" class="custom-species-form">
+              <div class="form-grid two-columns">
+                <label>
+                  <span>Namn *</span>
+                  <input id="custom-name" type="text" required placeholder="Ex. Min blå fjäril" />
+                </label>
+                <label>
+                  <span>Latinskt namn *</span>
+                  <input id="custom-scientific" type="text" required placeholder="Ex. Polyommatus sp." />
+                </label>
+              </div>
+              <label>
+                <span>Beskrivning *</span>
+                <textarea id="custom-description" rows="3" required placeholder="Kort kännetecken, färg, plats eller varför den är speciell..."></textarea>
+              </label>
+              <div class="form-grid two-columns">
+                <label class="file-button file-button--light">
+                  <input id="custom-image-one" type="file" accept="image/*" required />
+                  <span>Välj bild *</span>
+                </label>
+                <label class="file-button file-button--light">
+                  <input id="custom-image-two" type="file" accept="image/*" />
+                  <span>Välj extra bild</span>
+                </label>
+              </div>
+              <button class="primary-button" type="submit">Spara egen fjäril</button>
+              <p class="form-hint">Egna fjärilar sparas lokalt i webbläsaren och visas i både Fjärilar och Samling.</p>
+            </form>
+          </details>
+
+          <div class="result-line" id="result-line" aria-live="polite"></div>
+          <div class="butterfly-list" id="butterfly-list"></div>
+        </section>
+
+        <section class="panel-view" id="view-collection" hidden aria-labelledby="collection-title">
+          <div class="view-heading view-heading--compact">
+            <div>
+              <h2 class="section-title" id="collection-title">Samling</h2>
+            </div>
+          </div>
+
+          <section class="cloud-panel" id="cloud-panel" aria-label="Inloggning">
+            <div class="cloud-status-row">
+              <div>
+                <strong id="cloud-title">Logga in</strong>
+                <p id="cloud-status">Logga in en gång för automatisk backup av samlingen.</p>
+              </div>
+              <div class="cloud-actions">
+                <button class="ghost-button ghost-button--quiet" id="logout-button" type="button" hidden>Logga ut</button>
+              </div>
+            </div>
+            <form class="auth-form" id="auth-form" autocomplete="on" hidden>
+              <label>
+                <span>E-post</span>
+                <input id="login-email" type="email" inputmode="email" autocomplete="email" required />
+              </label>
+              <label>
+                <span>Lösenord</span>
+                <input id="login-password" type="password" autocomplete="current-password" required />
+              </label>
+              <button class="primary-button" id="login-button" type="submit">Logga in</button>
+            </form>
+          </section>
+          <button id="sync-now" type="button" hidden></button>
+
+          <div class="collection-tools" id="collection-tools" aria-label="Samlingsåtgärder">
+            <button class="collection-toggle-button" id="show-collection-form" type="button" aria-controls="collector" aria-expanded="false">
+              <span class="collection-toggle-icon" aria-hidden="true">+</span>
+              <span>Lägg till</span>
+            </button>
+          </div>
+
+          <section class="collector" id="collector" aria-label="Lägg till en fjäril i samlingen" hidden>
+            <div class="collector-head">
+              <div>
+                <h3>Ny fjäril</h3>
+                <p>Ladda upp en bild, beskriv, spara.</p>
+              </div>
+              <button class="collector-close" id="close-collection-form" type="button" aria-label="Stäng formuläret">×</button>
+            </div>
+            <div class="upload-card">
+              <label class="upload-preview upload-preview--picker" id="upload-preview" aria-live="polite" aria-label="Ladda upp fjärilsbild">
+                <input id="photo-input" class="upload-input" type="file" accept="image/*" />
+                <img id="preview-image" alt="" hidden />
+                <span class="preview-placeholder" id="preview-placeholder">
+                  <span class="plus-mark">+</span>
+                  <span>Ladda upp bild</span>
+                </span>
+              </label>
+
+              <form id="collection-form" class="collection-form">
+
+                <label>
+                  <span>Vilken fjäril?</span>
+                  <select id="species-select" required>
+                    <option value="">Välj art</option>
+                  </select>
+                </label>
+
+                <label>
+                  <span>Anteckning</span>
+                  <textarea id="observation-note" rows="3" placeholder="Ex. Satt på rödklöver nära bryggan..."></textarea>
+                </label>
+
+                <div class="form-grid two-columns">
+                  <label>
+                    <span>Datum</span>
+                    <input id="observation-date" type="date" />
+                  </label>
+
+                  <div class="location-picker" aria-label="Frivillig plats">
+                    <span class="location-picker-label">Plats <small>valfritt</small></span>
+                    <button class="ghost-button location-add-button" id="add-location" type="button">Lägg till plats</button>
+                    <div class="location-status" id="location-status" hidden aria-live="polite">
+                      <span id="location-status-text">Plats tillagd</span>
+                      <button class="mini-button" id="remove-location" type="button">Ta bort</button>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="primary-button primary-button--wide" id="add-observation" type="submit" disabled>Lägg till</button>
+
+                <p class="form-hint" id="storage-hint">Välj bild och art, sedan sparas direkt.</p>
+              </form>
+            </div>
+          </section>
+
+          <div class="collection-actions" hidden>
+            <button class="ghost-button" id="export-collection" type="button">Exportera JSON</button>
+            <button class="ghost-button" id="import-local" type="button">Importera JSON</button>
+            <button class="ghost-button ghost-button--danger" id="clear-collection" type="button">Töm samling</button>
+            <input id="import-file" type="file" accept="application/json,.json" hidden />
+          </div>
+
+          <div class="collection-grid" id="collection-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="empty-collection-template">
+      <article class="empty-state">
+        <h3>Inga fjärilar i samlingen ännu</h3>
+        <p>Tryck på Lägg till ovanför, välj en bild och koppla den till rätt fjäril.</p>
+      </article>
+    </template>
+
+
+    <div class="butterfly-editor" id="butterfly-editor" hidden role="dialog" aria-modal="true" aria-labelledby="butterfly-editor-title">
+      <div class="butterfly-editor-card">
+        <div class="editor-head">
+          <div>
+            <p class="editor-kicker">Redigera fjäril</p>
+            <h3 id="butterfly-editor-title">Redigera fjäril</h3>
+          </div>
+          <button class="editor-close" id="butterfly-editor-close" type="button" aria-label="Stäng redigering">×</button>
+        </div>
+
+        <form id="butterfly-editor-form" class="butterfly-editor-form">
+          <input id="butterfly-editor-id" type="hidden" />
+
+          <div class="form-grid two-columns">
+            <label>
+              <span>Svenskt namn *</span>
+              <input id="butterfly-editor-name" type="text" required />
+            </label>
+            <label>
+              <span>Latinskt namn *</span>
+              <input id="butterfly-editor-scientific" type="text" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Beskrivning *</span>
+            <textarea id="butterfly-editor-description" rows="4" required></textarea>
+          </label>
+
+          <label>
+            <span>Taggar</span>
+            <input id="butterfly-editor-tags" type="text" placeholder="Ex. gul, äng, sommar" />
+          </label>
+
+          <div class="form-grid two-columns">
+            <label>
+              <span>Bildlänk 1</span>
+              <input id="butterfly-editor-image-one" type="text" inputmode="url" placeholder="https://…" />
+            </label>
+            <label>
+              <span>Bildlänk 2</span>
+              <input id="butterfly-editor-image-two" type="text" inputmode="url" placeholder="https://…" />
+            </label>
+          </div>
+
+          <div class="butterfly-editor-actions">
+            <button class="editor-delete-button" id="delete-butterfly" type="button">× Ta bort fjäril</button>
+            <div class="editor-save-actions">
+              <button class="ghost-button" id="butterfly-editor-cancel" type="button">Avbryt</button>
+              <button class="primary-button" type="submit">Spara ändringar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="map-modal" id="map-modal" hidden role="dialog" aria-modal="true" aria-labelledby="map-modal-title">
+      <div class="map-modal-card">
+        <div class="map-modal-head">
+          <div>
+            <p class="editor-kicker">Plats</p>
+            <h3 id="map-modal-title">Sparad plats</h3>
+          </div>
+          <button class="map-modal-close" id="map-modal-close" type="button" aria-label="Stäng kartan">×</button>
+        </div>
+
+        <div class="location-map-shell">
+          <div class="location-map" id="location-map" aria-label="Karta över sparad plats"></div>
+        </div>
+
+        <div class="map-modal-meta">
+          <span id="map-modal-meta">Plats sparad</span>
+          <a id="map-external-link" href="#" target="_blank" rel="noopener noreferrer">Öppna i OpenStreetMap</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" hidden>
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Stäng bild">×</button>
+      <img id="lightbox-image" alt="Förstorad fjärilsbild" />
+      <p>Tryck på bilden för att zooma lite.</p>
+    </div>
+
+    <script src="./script.js?v=1.5.34" type="module"></script>
+  </body>
+</html>

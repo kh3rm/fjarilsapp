@@ -1,0 +1,782 @@
+[
+  {
+    "id": 1,
+    "svenskt_namn": "Citronfjäril",
+    "vetenskapligt_namn": "Gonepteryx rhamni",
+    "beskrivning": "Gulgrön och bladlik fjäril som ofta syns tidigt på våren. Den övervintrar som vuxen och kan dyka upp så snart solen värmer.",
+    "taggar": [
+      "gul",
+      "vår",
+      "trädgård",
+      "skogsbryn",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Citronfj%C3%A4ril_Common_brimstone_%2820286635622%29.jpg",
+        "commons_fil": "Citronfjäril Common brimstone (20286635622).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Citronfj%C3%A4ril_Common_brimstone_%2820286635622%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Gonepteryx_rhamni_090406.jpg",
+        "commons_fil": "Gonepteryx rhamni 090406.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Gonepteryx_rhamni_090406.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Gonepteryx_rhamni"
+  },
+  {
+    "id": 2,
+    "svenskt_namn": "Nässelfjäril",
+    "vetenskapligt_namn": "Aglais urticae",
+    "beskrivning": "Orange fjäril med svarta, gula och blå tecken längs vingarna. Larverna lever på brännässlor, vilket gör arten vanlig nära gårdar och trädgårdar.",
+    "taggar": [
+      "orange",
+      "nässlor",
+      "trädgård",
+      "vår",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Aglais_urticae_%2813869256763%29.jpg",
+        "commons_fil": "Aglais urticae (13869256763).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_urticae_%2813869256763%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Aglais_urticae_-_Aglais_01.jpg",
+        "commons_fil": "Aglais urticae - Aglais 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_urticae_-_Aglais_01.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aglais_urticae"
+  },
+  {
+    "id": 3,
+    "svenskt_namn": "Rapsfjäril",
+    "vetenskapligt_namn": "Pieris napi",
+    "beskrivning": "Vit fjäril med grågröna vingribbor på undersidan. Den är vanlig i många miljöer och flyger gärna längs vägkanter, ängar och trädgårdar.",
+    "taggar": [
+      "vit",
+      "grönribbad",
+      "äng",
+      "vägkant",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Green-veined_white_butterfly_%28Pieris_napi%29.jpg",
+        "commons_fil": "Green-veined white butterfly (Pieris napi).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Green-veined_white_butterfly_%28Pieris_napi%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Pieris_napi_Haukipudas_Oulu_20190804_01.jpg",
+        "commons_fil": "Pieris napi Haukipudas Oulu 20190804 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Pieris_napi_Haukipudas_Oulu_20190804_01.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_napi"
+  },
+  {
+    "id": 4,
+    "svenskt_namn": "Luktgräsfjäril",
+    "vetenskapligt_namn": "Aphantopus hyperantus",
+    "beskrivning": "Mörkbrun gräsfjäril med små ögonfläckar på vingarnas undersida. Den flyger ofta lågt och mjukt i gräsrika bryn och ängar.",
+    "taggar": [
+      "brun",
+      "ögonfläckar",
+      "äng",
+      "skogsbryn",
+      "vanlig"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/20220702_Aphantopus_hyperantus_01.jpg",
+        "commons_fil": "20220702 Aphantopus hyperantus 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220702_Aphantopus_hyperantus_01.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Ringlet_butterfly_at_the_Rye_River.jpg",
+        "commons_fil": "Ringlet butterfly at the Rye River.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Ringlet_butterfly_at_the_Rye_River.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aphantopus_hyperantus"
+  },
+  {
+    "id": 5,
+    "svenskt_namn": "Slåttergräsfjäril",
+    "vetenskapligt_namn": "Maniola jurtina",
+    "beskrivning": "Brun fjäril med orange ton och en tydlig ögonfläck på framvingen. Den trivs i blomrika gräsmarker och syns ofta mitt i sommaren.",
+    "taggar": [
+      "brun",
+      "orange",
+      "äng",
+      "sommar",
+      "vanlig"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/20210627_Maniola_jurtina.jpg",
+        "commons_fil": "20210627 Maniola jurtina.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210627_Maniola_jurtina.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/2016.07.07.-05-Felde--Grosses_Ochsenauge-Maennchen.jpg",
+        "commons_fil": "2016.07.07.-05-Felde--Grosses Ochsenauge-Maennchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2016.07.07.-05-Felde--Grosses_Ochsenauge-Maennchen.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Maniola_jurtina"
+  },
+  {
+    "id": 6,
+    "svenskt_namn": "Amiral",
+    "vetenskapligt_namn": "Vanessa atalanta",
+    "beskrivning": "Stor mörk fjäril med rödorange band och vita fläckar. Den är en stark flyttfjäril och besöker gärna fallfrukt och sensommarblommor.",
+    "taggar": [
+      "svart",
+      "röd",
+      "flyttfjäril",
+      "trädgård",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Admiral_butterfly_%28Vanessa_atalanta%29.jpg",
+        "commons_fil": "Admiral butterfly (Vanessa atalanta).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Admiral_butterfly_%28Vanessa_atalanta%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Amiral%2C_Falsterbo%2C_Sk%C3%A5ne%2C_Oktober_2017_%2826798763489%29.jpg",
+        "commons_fil": "Amiral, Falsterbo, Skåne, Oktober 2017 (26798763489).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Amiral%2C_Falsterbo%2C_Sk%C3%A5ne%2C_Oktober_2017_%2826798763489%29.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Vanessa_atalanta"
+  },
+  {
+    "id": 7,
+    "svenskt_namn": "Påfågelöga",
+    "vetenskapligt_namn": "Aglais io",
+    "beskrivning": "Rödbrun fjäril med stora blå ögonfläckar på vingarna. Ögonfläckarna kan skrämma fåglar och gör arten mycket lätt att känna igen.",
+    "taggar": [
+      "ögonfläckar",
+      "rödbrun",
+      "trädgård",
+      "nässlor",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Aglais_io_%28vue_dorsale%29.jpg",
+        "commons_fil": "Aglais io (vue dorsale).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_io_%28vue_dorsale%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/2006-03-31_Tagpfauenauge.jpg",
+        "commons_fil": "2006-03-31 Tagpfauenauge.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2006-03-31_Tagpfauenauge.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aglais_io"
+  },
+  {
+    "id": 8,
+    "svenskt_namn": "Puktörneblåvinge",
+    "vetenskapligt_namn": "Polyommatus icarus",
+    "beskrivning": "Liten blåvinge där hanen oftast är klarblå och honan mer brun. Den sitter gärna lågt på blommor i torra ängar och vägkanter.",
+    "taggar": [
+      "blå",
+      "liten",
+      "äng",
+      "torrmark",
+      "vanlig"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/20220525_Polyommatus_icarus.jpg",
+        "commons_fil": "20220525 Polyommatus icarus.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220525_Polyommatus_icarus.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/20220713_Polyommatus_icarus_01.jpg",
+        "commons_fil": "20220713 Polyommatus icarus 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220713_Polyommatus_icarus_01.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Polyommatus_icarus"
+  },
+  {
+    "id": 9,
+    "svenskt_namn": "Mindre guldvinge",
+    "vetenskapligt_namn": "Lycaena phlaeas",
+    "beskrivning": "Liten kopparorange fjäril med mörka fläckar och snabb flykt. Den trivs på soliga, torra marker där det finns låga blommor.",
+    "taggar": [
+      "orange",
+      "koppar",
+      "torrmark",
+      "liten",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/20150628Lycaena_phlaeas.jpg",
+        "commons_fil": "20150628Lycaena phlaeas.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20150628Lycaena_phlaeas.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Butterfly_Small_Copper_-_Lycaena_phlaeas.jpg",
+        "commons_fil": "Butterfly Small Copper - Lycaena phlaeas.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Butterfly_Small_Copper_-_Lycaena_phlaeas.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Lycaena_phlaeas"
+  },
+  {
+    "id": 10,
+    "svenskt_namn": "Ängssmygare",
+    "vetenskapligt_namn": "Ochlodes sylvanus",
+    "beskrivning": "Orangebrun smygare med kraftig kropp och snabb, hoppande flykt. Den sitter ofta med vingarna vinklade på grässtrån och blommor.",
+    "taggar": [
+      "orangebrun",
+      "smygare",
+      "gräs",
+      "äng",
+      "sommar"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/2013.06.27.-04-Ahrensberg-Rostfarbiger_Dickkopffalter-Weibchen.jpg",
+        "commons_fil": "2013.06.27.-04-Ahrensberg-Rostfarbiger Dickkopffalter-Weibchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2013.06.27.-04-Ahrensberg-Rostfarbiger_Dickkopffalter-Weibchen.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/2014.06.27.-1-Kaefertaler_Wald-Mannheim--Rostfarbiger_Dickkopffalter-Maennchen.jpg",
+        "commons_fil": "2014.06.27.-1-Kaefertaler Wald-Mannheim--Rostfarbiger Dickkopffalter-Maennchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2014.06.27.-1-Kaefertaler_Wald-Mannheim--Rostfarbiger_Dickkopffalter-Maennchen.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Ochlodes_sylvanus"
+  },
+  {
+    "id": 11,
+    "svenskt_namn": "Silverstreckad pärlemorfjäril",
+    "vetenskapligt_namn": "Argynnis paphia",
+    "beskrivning": "Stor orange pärlemorfjäril med svarta fläckar på ovansidan. På undersidan syns ljusa silverstreck, särskilt när den vilar med stängda vingar.",
+    "taggar": [
+      "orange",
+      "stor",
+      "silverstreck",
+      "skogsbryn",
+      "sommar"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/20180707Argynnis_paphia_01.jpg",
+        "commons_fil": "20180707Argynnis paphia 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180707Argynnis_paphia_01.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Argynnis_paphia_July_2016_Soisalo_island_Finland.jpg",
+        "commons_fil": "Argynnis paphia July 2016 Soisalo island Finland.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_paphia_July_2016_Soisalo_island_Finland.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Argynnis_paphia"
+  },
+  {
+    "id": 12,
+    "svenskt_namn": "Aurorafjäril",
+    "vetenskapligt_namn": "Anthocharis cardamines",
+    "beskrivning": "Vårfjäril där hanen har tydligt orange vingspetsar. Honan är vitare, men båda har vackert grönspräcklig undersida som kamouflage.",
+    "taggar": [
+      "vår",
+      "orange spetsar",
+      "vit",
+      "äng",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/2015-05-06_1087_Aurorafalter.jpg",
+        "commons_fil": "2015-05-06 1087 Aurorafalter.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2015-05-06_1087_Aurorafalter.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Anthocharis_Cardamines_%28aurore_%3B_ailes_d%C3%A9pli%C3%A9es%29.JPG",
+        "commons_fil": "Anthocharis Cardamines (aurore ; ailes dépliées).JPG",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Anthocharis_Cardamines_%28aurore_%3B_ailes_d%C3%A9pli%C3%A9es%29.JPG"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Anthocharis_cardamines"
+  },
+  {
+    "id": 13,
+    "svenskt_namn": "Kamgräsfjäril",
+    "vetenskapligt_namn": "Coenonympha pamphilus",
+    "beskrivning": "Liten varm brunorange gräsfjäril med diskret ögonfläck. Den flyger nära marken på torra ängar, betesmarker och öppna gräsytor.",
+    "taggar": [
+      "liten",
+      "brunorange",
+      "gräsmark",
+      "torräng",
+      "vanlig"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/2012.05.25.-13-Steinberger_See-Kleines_Wiesenvoegelchen.jpg",
+        "commons_fil": "2012.05.25.-13-Steinberger See-Kleines Wiesenvoegelchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2012.05.25.-13-Steinberger_See-Kleines_Wiesenvoegelchen.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/2013.05.28.-1-Mannheim_Vogelstang-Kleines_Wiesenvoegelchen.jpg",
+        "commons_fil": "2013.05.28.-1-Mannheim Vogelstang-Kleines Wiesenvoegelchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2013.05.28.-1-Mannheim_Vogelstang-Kleines_Wiesenvoegelchen.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Coenonympha_pamphilus"
+  },
+  {
+    "id": 14,
+    "svenskt_namn": "Rovfjäril",
+    "vetenskapligt_namn": "Pieris rapae",
+    "beskrivning": "Liten vitfjäril med svarta prickar och mörk vingspets. Den är vanlig i trädgårdar och odlingslandskap, särskilt där korsblommiga växter finns.",
+    "taggar": [
+      "vit",
+      "trädgård",
+      "odling",
+      "kålväxter",
+      "vanlig"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/-2018-09-19_Cabbage_White_Butterfly_%28Pieris_rapae%29%2C_Trimingham_%281%29.JPG",
+        "commons_fil": "-2018-09-19 Cabbage White Butterfly (Pieris rapae), Trimingham (1).JPG",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:-2018-09-19_Cabbage_White_Butterfly_%28Pieris_rapae%29%2C_Trimingham_%281%29.JPG"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/20170809Pieris_rapae.jpg",
+        "commons_fil": "20170809Pieris rapae.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170809Pieris_rapae.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_rapae"
+  },
+  {
+    "id": 15,
+    "svenskt_namn": "Kålfjäril",
+    "vetenskapligt_namn": "Pieris brassicae",
+    "beskrivning": "Stor vitfjäril med kraftigt mörka vingspetsar. Larverna kan äta på kålväxter, vilket gör arten välkänd i trädgårdar och odlingar.",
+    "taggar": [
+      "vit",
+      "stor",
+      "kål",
+      "trädgård",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/2016.07.07.-01-Felde--Grosser_Kohlweissling.jpg",
+        "commons_fil": "2016.07.07.-01-Felde--Grosser Kohlweissling.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2016.07.07.-01-Felde--Grosser_Kohlweissling.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Borboleta_branca_da_couve_%28Pieris_brassicae%29_%2852155655251%29.jpg",
+        "commons_fil": "Borboleta branca da couve (Pieris brassicae) (52155655251).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Borboleta_branca_da_couve_%28Pieris_brassicae%29_%2852155655251%29.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_brassicae"
+  },
+  {
+    "id": 16,
+    "svenskt_namn": "Mindre tåtelsmygare",
+    "vetenskapligt_namn": "Thymelicus lineola",
+    "beskrivning": "Liten gulbrun smygare som ofta sitter stilla på gräs och blommor. Den är diskret men vanlig i soliga, gräsrika marker.",
+    "taggar": [
+      "gulbrun",
+      "smygare",
+      "gräs",
+      "äng",
+      "liten"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Essex_Skipper_butterfly_%28Thymelicus_lineola%29_%2851339535378%29.jpg",
+        "commons_fil": "Essex Skipper butterfly (Thymelicus lineola) (51339535378).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Essex_Skipper_butterfly_%28Thymelicus_lineola%29_%2851339535378%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Thymelicus_lineola_European_Skipper_Butterfly.jpg",
+        "commons_fil": "Thymelicus lineola European Skipper Butterfly.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Thymelicus_lineola_European_Skipper_Butterfly.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Thymelicus_lineola"
+  },
+  {
+    "id": 17,
+    "svenskt_namn": "Grönsnabbvinge",
+    "vetenskapligt_namn": "Callophrys rubi",
+    "beskrivning": "Liten fjäril som nästan alltid visar sin gröna undersida när den sitter. Färgen gör att den kan försvinna mot blad och knoppar.",
+    "taggar": [
+      "grön",
+      "liten",
+      "vår",
+      "buskar",
+      "kamouflage"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callophrys_rubi%2C_Green_Hairstreak%2C_Groentje_01.jpg",
+        "commons_fil": "Callophrys rubi, Green Hairstreak, Groentje 01.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Callophrys_rubi%2C_Green_Hairstreak%2C_Groentje_01.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Butterfly_Green_Hairstreak_-_Callophrys_rubi.jpg",
+        "commons_fil": "Butterfly Green Hairstreak - Callophrys rubi.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Butterfly_Green_Hairstreak_-_Callophrys_rubi.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Callophrys_rubi"
+  },
+  {
+    "id": 18,
+    "svenskt_namn": "Tosteblåvinge",
+    "vetenskapligt_namn": "Celastrina argiolus",
+    "beskrivning": "Ljusblå blåvinge som ofta flyger lite högre än andra blåvingar. Den syns gärna vid buskar, skogsbryn, häckar och trädgårdar.",
+    "taggar": [
+      "ljusblå",
+      "buskar",
+      "trädgård",
+      "skogsbryn",
+      "vår"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/20170407Celastrina_argiolus2.jpg",
+        "commons_fil": "20170407Celastrina argiolus2.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170407Celastrina_argiolus2.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Celastrina_argiolus_%28Holly_blue%29%2C_Arnhem%2C_the_Netherlands.jpg",
+        "commons_fil": "Celastrina argiolus (Holly blue), Arnhem, the Netherlands.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Celastrina_argiolus_%28Holly_blue%29%2C_Arnhem%2C_the_Netherlands.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Celastrina_argiolus"
+  },
+  {
+    "id": 19,
+    "svenskt_namn": "Vinbärsfuks",
+    "vetenskapligt_namn": "Polygonia c-album",
+    "beskrivning": "Orange fjäril med kraftigt flikiga vingkanter. På undersidan finns ett litet vitt C-märke som har gett arten dess latinska namn.",
+    "taggar": [
+      "orange",
+      "flikiga vingar",
+      "c-märke",
+      "buskar",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Comma_butterfly_Polygonia_c-album_in_Essex%2C_England.jpg",
+        "commons_fil": "Comma butterfly Polygonia c-album in Essex, England.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Comma_butterfly_Polygonia_c-album_in_Essex%2C_England.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/20170626_-_16.48_Gehakkelde_Aurelia_%28Polygonia_c-album%29_2.jpg",
+        "commons_fil": "20170626 - 16.48 Gehakkelde Aurelia (Polygonia c-album) 2.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170626_-_16.48_Gehakkelde_Aurelia_%28Polygonia_c-album%29_2.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Polygonia_c-album"
+  },
+  {
+    "id": 20,
+    "svenskt_namn": "Sorgmantel",
+    "vetenskapligt_namn": "Nymphalis antiopa",
+    "beskrivning": "Stor mörk fjäril med ljus gulvit vingkant och blå prickar. Den övervintrar som vuxen och kan ses tidigt på våren.",
+    "taggar": [
+      "mörk",
+      "stor",
+      "ljus kant",
+      "blå prickar",
+      "vår"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/20210428.K%C3%B6nigsbr%C3%BCcker_Heide-Zochauer_Heidepfad.-017.3.jpg",
+        "commons_fil": "20210428.Königsbrücker Heide-Zochauer Heidepfad.-017.3.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210428.K%C3%B6nigsbr%C3%BCcker_Heide-Zochauer_Heidepfad.-017.3.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/2023-05_Rezerwat_Rybojady_%2803%29_Nymphalis_antiopa.jpg",
+        "commons_fil": "2023-05 Rezerwat Rybojady (03) Nymphalis antiopa.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2023-05_Rezerwat_Rybojady_%2803%29_Nymphalis_antiopa.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Nymphalis_antiopa"
+  },
+  {
+    "id": 21,
+    "svenskt_namn": "Tistelfjäril",
+    "vetenskapligt_namn": "Vanessa cardui",
+    "beskrivning": "Orange flyttfjäril med svartvita vingspetsar och fläckig undersida. Vissa år kommer många individer till Sverige från sydligare områden.",
+    "taggar": [
+      "orange",
+      "flyttfjäril",
+      "tistel",
+      "sensommar",
+      "vanlig vissa år"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/20220709_Vanessa_cardui_04.jpg",
+        "commons_fil": "20220709 Vanessa cardui 04.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220709_Vanessa_cardui_04.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Belle-Dame.jpg",
+        "commons_fil": "Belle-Dame.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Belle-Dame.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Vanessa_cardui"
+  },
+  {
+    "id": 22,
+    "svenskt_namn": "Pärlgräsfjäril",
+    "vetenskapligt_namn": "Coenonympha arcania",
+    "beskrivning": "Brunorange gräsfjäril med ljusa band och tydliga ögonfläckar på undersidan. Den trivs i blomrika bryn, gläntor och halvöppna marker.",
+    "taggar": [
+      "brunorange",
+      "ögonfläckar",
+      "bryn",
+      "glänta",
+      "sommar"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Pearly_Heath_%28Coenonympha_arcania%29.jpg",
+        "commons_fil": "Pearly Heath (Coenonympha arcania).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Pearly_Heath_%28Coenonympha_arcania%29.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coenonympha_arcania_%28Linnaeus%2C_1761%29.jpg",
+        "commons_fil": "Coenonympha arcania (Linnaeus, 1761).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Coenonympha_arcania_%28Linnaeus%2C_1761%29.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Coenonympha_arcania"
+  },
+  {
+    "id": 23,
+    "svenskt_namn": "Älggräspärlemorfjäril",
+    "vetenskapligt_namn": "Brenthis ino",
+    "beskrivning": "Orange pärlemorfjäril som ofta finns i fuktiga blomrika marker. Namnet hänger ihop med älggräs, en vanlig växt i dess miljöer.",
+    "taggar": [
+      "orange",
+      "fuktäng",
+      "älggräs",
+      "pärlemor",
+      "sommar"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Brenthis_ino_by_Thomas_Bresson.jpg",
+        "commons_fil": "Brenthis ino by Thomas Bresson.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Brenthis_ino_by_Thomas_Bresson.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Brenthis_ino_-_Keila.jpg",
+        "commons_fil": "Brenthis ino - Keila.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Brenthis_ino_-_Keila.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Brenthis_ino"
+  },
+  {
+    "id": 24,
+    "svenskt_namn": "Skogsnätfjäril",
+    "vetenskapligt_namn": "Melitaea athalia",
+    "beskrivning": "Orange och svart fjäril med tydligt rutigt nätmönster. Den hittas ofta i skogsbryn, gläntor och öppna marker med mycket blommor.",
+    "taggar": [
+      "nätmönster",
+      "orange",
+      "skogsbryn",
+      "glänta",
+      "medel"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Heath_fritillary_%28Melitaea_athalia_lachares%29_Sweden.jpg",
+        "commons_fil": "Heath fritillary (Melitaea athalia lachares) Sweden.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Heath_fritillary_%28Melitaea_athalia_lachares%29_Sweden.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Heath_fritillary_%28Melitaea_athalia_lachares%29.jpg",
+        "commons_fil": "Heath fritillary (Melitaea athalia lachares).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Heath_fritillary_%28Melitaea_athalia_lachares%29.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Melitaea_athalia"
+  },
+  {
+    "id": 25,
+    "svenskt_namn": "Ängspärlemorfjäril",
+    "vetenskapligt_namn": "Speyeria aglaja",
+    "beskrivning": "Stor orange pärlemorfjäril med svarta prickar på ovansidan. Den flyger ofta kraftfullt över ängar, hagmarker och blomrika öppna ytor.",
+    "taggar": [
+      "orange",
+      "stor",
+      "äng",
+      "hagmark",
+      "pärlemor"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/20210627_Speyeria_aglaja.jpg",
+        "commons_fil": "20210627 Speyeria aglaja.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210627_Speyeria_aglaja.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Argynnis_aglaja_%28Dark_Green_Fritillary%29_-_Flickr_-_S._Rae_%281%29.jpg",
+        "commons_fil": "Argynnis aglaja (Dark Green Fritillary) - Flickr - S. Rae (1).jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_aglaja_%28Dark_Green_Fritillary%29_-_Flickr_-_S._Rae_%281%29.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Speyeria_aglaja"
+  },
+  {
+    "id": 26,
+    "svenskt_namn": "Skogspärlemorfjäril",
+    "vetenskapligt_namn": "Fabriciana adippe",
+    "beskrivning": "Orange pärlemorfjäril med svarta fläckar och ljusare teckning på undersidan. Den ses ofta vid skogskanter, gläntor och soliga stigar.",
+    "taggar": [
+      "orange",
+      "skogskant",
+      "glänta",
+      "pärlemor",
+      "sommar"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/2018.06.24.-16-Wiesensteig--Feuriger_Perlmuttfalter-Maennchen.jpg",
+        "commons_fil": "2018.06.24.-16-Wiesensteig--Feuriger Perlmuttfalter-Maennchen.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:2018.06.24.-16-Wiesensteig--Feuriger_Perlmuttfalter-Maennchen.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Argynnis_adippe_%28male%29.JPG",
+        "commons_fil": "Argynnis adippe (male).JPG",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_adippe_%28male%29.JPG"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Fabriciana_adippe"
+  },
+  {
+    "id": 27,
+    "svenskt_namn": "Brunfläckig pärlemorfjäril",
+    "vetenskapligt_namn": "Boloria selene",
+    "beskrivning": "Mindre pärlemorfjäril med orange ovansida och ljusa pärlfläckar på undersidan. Den trivs ofta i fuktigare ängs- och skogsmarker.",
+    "taggar": [
+      "orange",
+      "liten",
+      "fuktmark",
+      "pärlemor",
+      "skog"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/20170728-IMG_3012-b_Boloria_selene.jpg",
+        "commons_fil": "20170728-IMG 3012-b Boloria selene.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170728-IMG_3012-b_Boloria_selene.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/20170728-IMG_3019_Boloria_selene.jpg",
+        "commons_fil": "20170728-IMG 3019 Boloria selene.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170728-IMG_3019_Boloria_selene.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Boloria_selene"
+  },
+  {
+    "id": 28,
+    "svenskt_namn": "Vitfläckig guldvinge",
+    "vetenskapligt_namn": "Lycaena virgaureae",
+    "beskrivning": "Lysande orange guldvinge där hanen kan se nästan glödande ut i sol. Den besöker gärna blommor på öppna, varma marker.",
+    "taggar": [
+      "orange",
+      "guldvinge",
+      "blomrik mark",
+      "sol",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Lycaena_virgaureae_male.jpg",
+        "commons_fil": "Lycaena virgaureae male.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Lycaena_virgaureae_male.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Lycaena_virgaureae_female.jpg",
+        "commons_fil": "Lycaena virgaureae female.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:Lycaena_virgaureae_female.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Lycaena_virgaureae"
+  },
+  {
+    "id": 29,
+    "svenskt_namn": "Hedblåvinge",
+    "vetenskapligt_namn": "Plebejus idas",
+    "beskrivning": "Blåvinge som ofta hör hemma på hedar, torra marker och öppna skogslandskap. Hanen är blå, medan honan oftare är brunare.",
+    "taggar": [
+      "blå",
+      "hed",
+      "torrmark",
+      "skogsmark",
+      "liten"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_04.jpg",
+        "commons_fil": "20180731Südliche Fröttmaninger Heide 04.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_04.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_05.jpg",
+        "commons_fil": "20180731Südliche Fröttmaninger Heide 05.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_05.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Plebejus_idas"
+  },
+  {
+    "id": 30,
+    "svenskt_namn": "Makaonfjäril",
+    "vetenskapligt_namn": "Papilio machaon",
+    "beskrivning": "Stor gul fjäril med svarta band och små svansar på bakvingarna. Den är spektakulär men lokalt vanligare i vissa landskap än andra.",
+    "taggar": [
+      "gul",
+      "stor",
+      "svansar",
+      "våtmark",
+      "lätt"
+    ],
+    "images": [
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/%28Papilio_machaon%29._Swallowtail_-_Flickr_-_gailhampshire.jpg",
+        "commons_fil": "(Papilio machaon). Swallowtail - Flickr - gailhampshire.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:%28Papilio_machaon%29._Swallowtail_-_Flickr_-_gailhampshire.jpg"
+      },
+      {
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/09_Machaon.jpg",
+        "commons_fil": "09 Machaon.jpg",
+        "commons_sida": "https://commons.wikimedia.org/wiki/File:09_Machaon.jpg"
+      }
+    ],
+    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Papilio_machaon"
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "name": "Annies fjärilar",
+  "short_name": "Fjärilar",
+  "description": "Identifiera, fotografera, samla.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e9e3d3",
+  "theme_color": "#e9e3d3",
+  "icons": [
+    {
+      "src": "./assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
