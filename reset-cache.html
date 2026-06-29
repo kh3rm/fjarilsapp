@@ -15,7 +15,7 @@
   <main>
     <h1>Rensar app-cache…</h1>
     <p id="status">Tar bort gamla service workers och cache-filer.</p>
-    <p><a href="./?v=1.5.61" id="go" hidden>Öppna appen igen</a></p>
+    <p><a href="./?v=1.5.62" id="go" hidden>Öppna appen igen</a></p>
   </main>
   <script>
     (async () => {
@@ -30,7 +30,7 @@
           await Promise.all(keys.map((key) => caches.delete(key)));
         }
         status.textContent = 'Klart. Öppnar nya versionen…';
-        setTimeout(() => { window.location.href = './?v=1.5.61'; }, 600);
+        setTimeout(() => { window.location.href = './?v=1.5.62'; }, 600);
       } catch (error) {
         console.error(error);
         status.textContent = 'Kunde inte rensa automatiskt. Använd länken nedan.';

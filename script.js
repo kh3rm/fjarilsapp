@@ -1,7 +1,7 @@
-import { SUPABASE_CONFIG } from './supabase-config.js?v=1.5.61';
+import { SUPABASE_CONFIG } from './supabase-config.js?v=1.5.62';
 
 const APP_ID = 'annies-fjarilar';
-const DATA_URL = './data/butterflies.json?v=1.5.61';
+const DATA_URL = './data/butterflies.json?v=1.5.62';
 const COLLECTION_KEY = 'fjarilsguiden.collection.v1';
 const CUSTOM_SPECIES_KEY = 'fjarilsguiden.customSpecies.v1';
 const BUTTERFLY_EDITS_KEY = 'annies-fjarilar.butterflyEdits.v1';
@@ -21,6 +21,7 @@ let appDbPromise = null;
 
 const state = {
   baseButterflies: [],
+  localBaseButterflies: [],
   customButterflies: [],
   collection: [],
   butterflyEdits: {},
@@ -166,10 +167,21 @@ async function loadBaseButterflies() {
   try {
     const response = await fetch(DATA_URL);
     if (!response.ok) throw new Error(`Kunde inte läsa ${DATA_URL}`);
-    state.baseButterflies = await response.json();
+    const butterflies = await response.json();
+
+    state.localBaseButterflies = Array.isArray(butterflies)
+      ? butterflies.map((butterfly) => ({
+        ...butterfly,
+        custom: false,
+        images: normalizeButterflyImages(butterfly.images),
+      }))
+      : [];
+
+    state.baseButterflies = [...state.localBaseButterflies];
   } catch (error) {
     console.error(error);
     showToast('Kunde inte ladda fjärilsdata. Kontrollera data/butterflies.json.');
+    state.localBaseButterflies = [];
     state.baseButterflies = [];
   }
 }
@@ -1420,8 +1432,8 @@ async function shareCollectionCard(entryId) {
 async function createShareCard(entry) {
   const imageSrc = await resolveCollectionImageSource(entry);
   const image = await loadCanvasImage(imageSrc);
-  const appIcon = await loadCanvasImage('./assets/pwa/icon-192x192.png?v=1.5.61').catch(() => null);
-  const mapMarker = await loadCanvasImage('./assets/map-pin-clean.svg?v=1.5.61').catch(() => null);
+  const appIcon = await loadCanvasImage('./assets/pwa/icon-192x192.png?v=1.5.62').catch(() => null);
+  const mapMarker = await loadCanvasImage('./assets/map-pin-clean.svg?v=1.5.62').catch(() => null);
   const location = normalizeLocation(entry.location);
   const cardBlob = await drawShareCard(entry, image, location, appIcon, mapMarker);
   const objectUrl = URL.createObjectURL(cardBlob);
@@ -2563,19 +2575,52 @@ async function seedCatalogFromJson() {
 }
 
 function mergeCatalogButterflies(rows) {
-  const base = [];
   const custom = [];
+  const localBase = state.localBaseButterflies.length
+    ? state.localBaseButterflies
+    : state.baseButterflies.filter((butterfly) => !butterfly.custom);
+
+  const normalizeNameKey = (value = '') => String(value).trim().toLocaleLowerCase('sv');
+  const localByName = new Map();
+  const baseById = new Map(
+    localBase
+      .filter((item) => item?.id)
+      .map((item) => {
+        const local = {
+          ...item,
+          custom: false,
+          images: normalizeButterflyImages(item.images),
+        };
+        const nameKey = normalizeNameKey(local.svenskt_namn);
+        if (nameKey) localByName.set(nameKey, local);
+        return [String(local.id), local];
+      }),
+  );
 
   rows.forEach((row) => {
     const butterfly = catalogRowToButterfly(row);
     if (!butterfly.id || butterfly.deletedAt) return;
-    if (butterfly.custom) custom.push(butterfly);
-    else base.push(butterfly);
+
+    if (butterfly.custom) {
+      custom.push(butterfly);
+      return;
+    }
+
+    const local = baseById.get(String(butterfly.id)) || localByName.get(normalizeNameKey(butterfly.svenskt_namn));
+
+    if (local) {
+      baseById.set(String(local.id), {
+        ...local,
+        ...butterfly,
+        id: local.id,
+        custom: false,
+        images: normalizeButterflyImages(local.images),
+        bildkategori_commons_url: butterfly.bildkategori_commons_url || local.bildkategori_commons_url || '',
+      });
+    }
   });
 
-  if (base.length) {
-    state.baseButterflies = sortCatalogButterflies(base);
-  }
+  state.baseButterflies = sortCatalogButterflies(Array.from(baseById.values()));
 
   if (custom.length) {
     const byId = new Map(state.customButterflies.map((item) => [String(item.id), item]));
