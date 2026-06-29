@@ -13,17 +13,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f1/Citronfj%C3%A4ril_Common_brimstone_%2820286635622%29.jpg",
-        "commons_fil": "Citronfjäril Common brimstone (20286635622).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Citronfj%C3%A4ril_Common_brimstone_%2820286635622%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e5/Gonepteryx_rhamni_090406.jpg",
-        "commons_fil": "Gonepteryx rhamni 090406.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Gonepteryx_rhamni_090406.jpg"
+        "url": "./assets/species/citronfjaril.webp",
+        "local_file": "citronfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Gonepteryx_rhamni"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 2,
@@ -39,17 +33,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/Aglais_urticae_%2813869256763%29.jpg",
-        "commons_fil": "Aglais urticae (13869256763).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_urticae_%2813869256763%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Aglais_urticae_-_Aglais_01.jpg",
-        "commons_fil": "Aglais urticae - Aglais 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_urticae_-_Aglais_01.jpg"
+        "url": "./assets/species/nasselfjaril.webp",
+        "local_file": "nasselfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aglais_urticae"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 3,
@@ -65,17 +53,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Green-veined_white_butterfly_%28Pieris_napi%29.jpg",
-        "commons_fil": "Green-veined white butterfly (Pieris napi).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Green-veined_white_butterfly_%28Pieris_napi%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d3/Pieris_napi_Haukipudas_Oulu_20190804_01.jpg",
-        "commons_fil": "Pieris napi Haukipudas Oulu 20190804 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Pieris_napi_Haukipudas_Oulu_20190804_01.jpg"
+        "url": "./assets/species/rapsfjaril.webp",
+        "local_file": "rapsfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_napi"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 4,
@@ -91,17 +73,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/20220702_Aphantopus_hyperantus_01.jpg",
-        "commons_fil": "20220702 Aphantopus hyperantus 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220702_Aphantopus_hyperantus_01.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Ringlet_butterfly_at_the_Rye_River.jpg",
-        "commons_fil": "Ringlet butterfly at the Rye River.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Ringlet_butterfly_at_the_Rye_River.jpg"
+        "url": "./assets/species/luktgrasfjaril.webp",
+        "local_file": "luktgrasfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aphantopus_hyperantus"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 5,
@@ -117,17 +93,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e0/20210627_Maniola_jurtina.jpg",
-        "commons_fil": "20210627 Maniola jurtina.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210627_Maniola_jurtina.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/2016.07.07.-05-Felde--Grosses_Ochsenauge-Maennchen.jpg",
-        "commons_fil": "2016.07.07.-05-Felde--Grosses Ochsenauge-Maennchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2016.07.07.-05-Felde--Grosses_Ochsenauge-Maennchen.jpg"
+        "url": "./assets/species/slattergrasfjaril.webp",
+        "local_file": "slattergrasfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Maniola_jurtina"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 6,
@@ -143,17 +113,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/Admiral_butterfly_%28Vanessa_atalanta%29.jpg",
-        "commons_fil": "Admiral butterfly (Vanessa atalanta).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Admiral_butterfly_%28Vanessa_atalanta%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Amiral%2C_Falsterbo%2C_Sk%C3%A5ne%2C_Oktober_2017_%2826798763489%29.jpg",
-        "commons_fil": "Amiral, Falsterbo, Skåne, Oktober 2017 (26798763489).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Amiral%2C_Falsterbo%2C_Sk%C3%A5ne%2C_Oktober_2017_%2826798763489%29.jpg"
+        "url": "./assets/species/amiral.webp",
+        "local_file": "amiral.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Vanessa_atalanta"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 7,
@@ -169,17 +133,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/Aglais_io_%28vue_dorsale%29.jpg",
-        "commons_fil": "Aglais io (vue dorsale).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Aglais_io_%28vue_dorsale%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/2006-03-31_Tagpfauenauge.jpg",
-        "commons_fil": "2006-03-31 Tagpfauenauge.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2006-03-31_Tagpfauenauge.jpg"
+        "url": "./assets/species/pafageloga.webp",
+        "local_file": "pafageloga.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Aglais_io"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 8,
@@ -195,17 +153,17 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/19/20220525_Polyommatus_icarus.jpg",
-        "commons_fil": "20220525 Polyommatus icarus.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220525_Polyommatus_icarus.jpg"
+        "url": "./assets/species/puktorneblavinge-hane.webp",
+        "local_file": "puktorneblavinge-hane.webp",
+        "variant": "Hane"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/20220713_Polyommatus_icarus_01.jpg",
-        "commons_fil": "20220713 Polyommatus icarus 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220713_Polyommatus_icarus_01.jpg"
+        "url": "./assets/species/puktorneblavinge-hona.webp",
+        "local_file": "puktorneblavinge-hona.webp",
+        "variant": "Hona"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Polyommatus_icarus"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 9,
@@ -221,17 +179,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/fb/20150628Lycaena_phlaeas.jpg",
-        "commons_fil": "20150628Lycaena phlaeas.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20150628Lycaena_phlaeas.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Butterfly_Small_Copper_-_Lycaena_phlaeas.jpg",
-        "commons_fil": "Butterfly Small Copper - Lycaena phlaeas.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Butterfly_Small_Copper_-_Lycaena_phlaeas.jpg"
+        "url": "./assets/species/mindre-guldvinge.webp",
+        "local_file": "mindre-guldvinge.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Lycaena_phlaeas"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 10,
@@ -247,17 +199,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/2013.06.27.-04-Ahrensberg-Rostfarbiger_Dickkopffalter-Weibchen.jpg",
-        "commons_fil": "2013.06.27.-04-Ahrensberg-Rostfarbiger Dickkopffalter-Weibchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2013.06.27.-04-Ahrensberg-Rostfarbiger_Dickkopffalter-Weibchen.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/2014.06.27.-1-Kaefertaler_Wald-Mannheim--Rostfarbiger_Dickkopffalter-Maennchen.jpg",
-        "commons_fil": "2014.06.27.-1-Kaefertaler Wald-Mannheim--Rostfarbiger Dickkopffalter-Maennchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2014.06.27.-1-Kaefertaler_Wald-Mannheim--Rostfarbiger_Dickkopffalter-Maennchen.jpg"
+        "url": "./assets/species/angssmygare.webp",
+        "local_file": "angssmygare.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Ochlodes_sylvanus"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 11,
@@ -273,17 +219,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/24/20180707Argynnis_paphia_01.jpg",
-        "commons_fil": "20180707Argynnis paphia 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180707Argynnis_paphia_01.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/1/10/Argynnis_paphia_July_2016_Soisalo_island_Finland.jpg",
-        "commons_fil": "Argynnis paphia July 2016 Soisalo island Finland.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_paphia_July_2016_Soisalo_island_Finland.jpg"
+        "url": "./assets/species/silverstreckad-parlemorfjaril.webp",
+        "local_file": "silverstreckad-parlemorfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Argynnis_paphia"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 12,
@@ -299,17 +239,17 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/2015-05-06_1087_Aurorafalter.jpg",
-        "commons_fil": "2015-05-06 1087 Aurorafalter.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2015-05-06_1087_Aurorafalter.jpg"
+        "url": "./assets/species/aurorafjaril-hane.webp",
+        "local_file": "aurorafjaril-hane.webp",
+        "variant": "Hane"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Anthocharis_Cardamines_%28aurore_%3B_ailes_d%C3%A9pli%C3%A9es%29.JPG",
-        "commons_fil": "Anthocharis Cardamines (aurore ; ailes dépliées).JPG",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Anthocharis_Cardamines_%28aurore_%3B_ailes_d%C3%A9pli%C3%A9es%29.JPG"
+        "url": "./assets/species/aurorafjaril-hona.webp",
+        "local_file": "aurorafjaril-hona.webp",
+        "variant": "Hona"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Anthocharis_cardamines"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 13,
@@ -325,17 +265,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/85/2012.05.25.-13-Steinberger_See-Kleines_Wiesenvoegelchen.jpg",
-        "commons_fil": "2012.05.25.-13-Steinberger See-Kleines Wiesenvoegelchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2012.05.25.-13-Steinberger_See-Kleines_Wiesenvoegelchen.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/2013.05.28.-1-Mannheim_Vogelstang-Kleines_Wiesenvoegelchen.jpg",
-        "commons_fil": "2013.05.28.-1-Mannheim Vogelstang-Kleines Wiesenvoegelchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2013.05.28.-1-Mannheim_Vogelstang-Kleines_Wiesenvoegelchen.jpg"
+        "url": "./assets/species/kamgrasfjaril.webp",
+        "local_file": "kamgrasfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Coenonympha_pamphilus"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 14,
@@ -351,17 +285,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/9/93/-2018-09-19_Cabbage_White_Butterfly_%28Pieris_rapae%29%2C_Trimingham_%281%29.JPG",
-        "commons_fil": "-2018-09-19 Cabbage White Butterfly (Pieris rapae), Trimingham (1).JPG",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:-2018-09-19_Cabbage_White_Butterfly_%28Pieris_rapae%29%2C_Trimingham_%281%29.JPG"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c7/20170809Pieris_rapae.jpg",
-        "commons_fil": "20170809Pieris rapae.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170809Pieris_rapae.jpg"
+        "url": "./assets/species/rovfjaril.webp",
+        "local_file": "rovfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_rapae"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 15,
@@ -377,17 +305,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/2016.07.07.-01-Felde--Grosser_Kohlweissling.jpg",
-        "commons_fil": "2016.07.07.-01-Felde--Grosser Kohlweissling.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2016.07.07.-01-Felde--Grosser_Kohlweissling.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Borboleta_branca_da_couve_%28Pieris_brassicae%29_%2852155655251%29.jpg",
-        "commons_fil": "Borboleta branca da couve (Pieris brassicae) (52155655251).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Borboleta_branca_da_couve_%28Pieris_brassicae%29_%2852155655251%29.jpg"
+        "url": "./assets/species/kalfjaril.webp",
+        "local_file": "kalfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Pieris_brassicae"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 16,
@@ -403,17 +325,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Essex_Skipper_butterfly_%28Thymelicus_lineola%29_%2851339535378%29.jpg",
-        "commons_fil": "Essex Skipper butterfly (Thymelicus lineola) (51339535378).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Essex_Skipper_butterfly_%28Thymelicus_lineola%29_%2851339535378%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Thymelicus_lineola_European_Skipper_Butterfly.jpg",
-        "commons_fil": "Thymelicus lineola European Skipper Butterfly.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Thymelicus_lineola_European_Skipper_Butterfly.jpg"
+        "url": "./assets/species/mindre-tatelsmygare.webp",
+        "local_file": "mindre-tatelsmygare.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Thymelicus_lineola"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 17,
@@ -429,17 +345,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Callophrys_rubi%2C_Green_Hairstreak%2C_Groentje_01.jpg",
-        "commons_fil": "Callophrys rubi, Green Hairstreak, Groentje 01.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Callophrys_rubi%2C_Green_Hairstreak%2C_Groentje_01.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Butterfly_Green_Hairstreak_-_Callophrys_rubi.jpg",
-        "commons_fil": "Butterfly Green Hairstreak - Callophrys rubi.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Butterfly_Green_Hairstreak_-_Callophrys_rubi.jpg"
+        "url": "./assets/species/gronsnabbvinge.webp",
+        "local_file": "gronsnabbvinge.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Callophrys_rubi"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 18,
@@ -455,17 +365,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/20170407Celastrina_argiolus2.jpg",
-        "commons_fil": "20170407Celastrina argiolus2.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170407Celastrina_argiolus2.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Celastrina_argiolus_%28Holly_blue%29%2C_Arnhem%2C_the_Netherlands.jpg",
-        "commons_fil": "Celastrina argiolus (Holly blue), Arnhem, the Netherlands.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Celastrina_argiolus_%28Holly_blue%29%2C_Arnhem%2C_the_Netherlands.jpg"
+        "url": "./assets/species/tosteblavinge.webp",
+        "local_file": "tosteblavinge.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Celastrina_argiolus"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 19,
@@ -481,17 +385,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/74/Comma_butterfly_Polygonia_c-album_in_Essex%2C_England.jpg",
-        "commons_fil": "Comma butterfly Polygonia c-album in Essex, England.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Comma_butterfly_Polygonia_c-album_in_Essex%2C_England.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/26/20170626_-_16.48_Gehakkelde_Aurelia_%28Polygonia_c-album%29_2.jpg",
-        "commons_fil": "20170626 - 16.48 Gehakkelde Aurelia (Polygonia c-album) 2.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170626_-_16.48_Gehakkelde_Aurelia_%28Polygonia_c-album%29_2.jpg"
+        "url": "./assets/species/vinbarsfuks.webp",
+        "local_file": "vinbarsfuks.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Polygonia_c-album"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 20,
@@ -507,17 +405,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/20210428.K%C3%B6nigsbr%C3%BCcker_Heide-Zochauer_Heidepfad.-017.3.jpg",
-        "commons_fil": "20210428.Königsbrücker Heide-Zochauer Heidepfad.-017.3.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210428.K%C3%B6nigsbr%C3%BCcker_Heide-Zochauer_Heidepfad.-017.3.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/2023-05_Rezerwat_Rybojady_%2803%29_Nymphalis_antiopa.jpg",
-        "commons_fil": "2023-05 Rezerwat Rybojady (03) Nymphalis antiopa.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2023-05_Rezerwat_Rybojady_%2803%29_Nymphalis_antiopa.jpg"
+        "url": "./assets/species/sorgmantel.webp",
+        "local_file": "sorgmantel.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Nymphalis_antiopa"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 21,
@@ -533,17 +425,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/20220709_Vanessa_cardui_04.jpg",
-        "commons_fil": "20220709 Vanessa cardui 04.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20220709_Vanessa_cardui_04.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0d/Belle-Dame.jpg",
-        "commons_fil": "Belle-Dame.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Belle-Dame.jpg"
+        "url": "./assets/species/tistelfjaril.webp",
+        "local_file": "tistelfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Vanessa_cardui"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 22,
@@ -559,17 +445,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dd/Pearly_Heath_%28Coenonympha_arcania%29.jpg",
-        "commons_fil": "Pearly Heath (Coenonympha arcania).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Pearly_Heath_%28Coenonympha_arcania%29.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Coenonympha_arcania_%28Linnaeus%2C_1761%29.jpg",
-        "commons_fil": "Coenonympha arcania (Linnaeus, 1761).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Coenonympha_arcania_%28Linnaeus%2C_1761%29.jpg"
+        "url": "./assets/species/parlgrasfjaril.webp",
+        "local_file": "parlgrasfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Coenonympha_arcania"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 23,
@@ -585,17 +465,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/Brenthis_ino_by_Thomas_Bresson.jpg",
-        "commons_fil": "Brenthis ino by Thomas Bresson.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Brenthis_ino_by_Thomas_Bresson.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b3/Brenthis_ino_-_Keila.jpg",
-        "commons_fil": "Brenthis ino - Keila.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Brenthis_ino_-_Keila.jpg"
+        "url": "./assets/species/alggrasparlemorfjaril.webp",
+        "local_file": "alggrasparlemorfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Brenthis_ino"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 24,
@@ -611,17 +485,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Heath_fritillary_%28Melitaea_athalia_lachares%29_Sweden.jpg",
-        "commons_fil": "Heath fritillary (Melitaea athalia lachares) Sweden.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Heath_fritillary_%28Melitaea_athalia_lachares%29_Sweden.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/8/89/Heath_fritillary_%28Melitaea_athalia_lachares%29.jpg",
-        "commons_fil": "Heath fritillary (Melitaea athalia lachares).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Heath_fritillary_%28Melitaea_athalia_lachares%29.jpg"
+        "url": "./assets/species/skogsnatfjaril.webp",
+        "local_file": "skogsnatfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Melitaea_athalia"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 25,
@@ -637,17 +505,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/51/20210627_Speyeria_aglaja.jpg",
-        "commons_fil": "20210627 Speyeria aglaja.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20210627_Speyeria_aglaja.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Argynnis_aglaja_%28Dark_Green_Fritillary%29_-_Flickr_-_S._Rae_%281%29.jpg",
-        "commons_fil": "Argynnis aglaja (Dark Green Fritillary) - Flickr - S. Rae (1).jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_aglaja_%28Dark_Green_Fritillary%29_-_Flickr_-_S._Rae_%281%29.jpg"
+        "url": "./assets/species/angsparlemorfjaril.webp",
+        "local_file": "angsparlemorfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Speyeria_aglaja"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 26,
@@ -663,17 +525,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/2018.06.24.-16-Wiesensteig--Feuriger_Perlmuttfalter-Maennchen.jpg",
-        "commons_fil": "2018.06.24.-16-Wiesensteig--Feuriger Perlmuttfalter-Maennchen.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:2018.06.24.-16-Wiesensteig--Feuriger_Perlmuttfalter-Maennchen.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Argynnis_adippe_%28male%29.JPG",
-        "commons_fil": "Argynnis adippe (male).JPG",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Argynnis_adippe_%28male%29.JPG"
+        "url": "./assets/species/skogsparlemorfjaril.webp",
+        "local_file": "skogsparlemorfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Fabriciana_adippe"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 27,
@@ -689,17 +545,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/3/32/20170728-IMG_3012-b_Boloria_selene.jpg",
-        "commons_fil": "20170728-IMG 3012-b Boloria selene.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170728-IMG_3012-b_Boloria_selene.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d4/20170728-IMG_3019_Boloria_selene.jpg",
-        "commons_fil": "20170728-IMG 3019 Boloria selene.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20170728-IMG_3019_Boloria_selene.jpg"
+        "url": "./assets/species/brunflackig-parlemorfjaril.webp",
+        "local_file": "brunflackig-parlemorfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Boloria_selene"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 28,
@@ -715,17 +565,11 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Lycaena_virgaureae_male.jpg",
-        "commons_fil": "Lycaena virgaureae male.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Lycaena_virgaureae_male.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Lycaena_virgaureae_female.jpg",
-        "commons_fil": "Lycaena virgaureae female.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:Lycaena_virgaureae_female.jpg"
+        "url": "./assets/species/vitflackig-guldvinge.webp",
+        "local_file": "vitflackig-guldvinge.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Lycaena_virgaureae"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 29,
@@ -741,17 +585,17 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_04.jpg",
-        "commons_fil": "20180731Südliche Fröttmaninger Heide 04.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_04.jpg"
+        "url": "./assets/species/hedblavinge-hane.webp",
+        "local_file": "hedblavinge-hane.webp",
+        "variant": "Hane"
       },
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_05.jpg",
-        "commons_fil": "20180731Südliche Fröttmaninger Heide 05.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:20180731S%C3%BCdliche_Fr%C3%B6ttmaninger_Heide_05.jpg"
+        "url": "./assets/species/hedblavinge-hona.webp",
+        "local_file": "hedblavinge-hona.webp",
+        "variant": "Hona"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Plebejus_idas"
+    "bildkategori_commons_url": ""
   },
   {
     "id": 30,
@@ -767,16 +611,10 @@
     ],
     "images": [
       {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a0/%28Papilio_machaon%29._Swallowtail_-_Flickr_-_gailhampshire.jpg",
-        "commons_fil": "(Papilio machaon). Swallowtail - Flickr - gailhampshire.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:%28Papilio_machaon%29._Swallowtail_-_Flickr_-_gailhampshire.jpg"
-      },
-      {
-        "url": "https://upload.wikimedia.org/wikipedia/commons/a/ab/09_Machaon.jpg",
-        "commons_fil": "09 Machaon.jpg",
-        "commons_sida": "https://commons.wikimedia.org/wiki/File:09_Machaon.jpg"
+        "url": "./assets/species/makaonfjaril.webp",
+        "local_file": "makaonfjaril.webp"
       }
     ],
-    "bildkategori_commons_url": "https://commons.wikimedia.org/wiki/Category:Papilio_machaon"
+    "bildkategori_commons_url": ""
   }
 ]

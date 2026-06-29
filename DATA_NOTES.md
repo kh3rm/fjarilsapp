@@ -11,3 +11,9 @@ Den här versionen har även lokalt stöd för egna fjärilar:
 - valfri extra bild
 
 Egna arter sparas i `localStorage` under nyckeln `fjarilsguiden.customSpecies.v1`.
+
+## v1.5.44 local species assets
+
+- Referensbilderna för fjärilarna ligger nu lokalt i `assets/species/` som optimerade WebP-filer.
+- De flesta arter använder 1 bild; arter med tydlig hane/hona-distinktion använder 2 bilder.
+- Kortlayouten hanterar 1 respektive 2 bilder mer harmoniskt på mobil och desktop.

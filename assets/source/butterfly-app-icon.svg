@@ -49,5 +49,6 @@
     </g>
   </defs>
 
-<g transform="translate(512 512) scale(1.07) translate(-512 -512)"><use href="#butterflyMark"/></g>
+<rect width="1024" height="1024" rx="216" fill="url(#bgWarm)"/>
+  <g transform="translate(512 512) scale(0.88) translate(-512 -512)"><use href="#butterflyMark"/></g>
 </svg>

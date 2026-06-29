@@ -9,8 +9,18 @@
       content="Annies fjärilar: en mobilcentrerad svensk fjärilsguide med egna bilder och egna arter."
     />
     <meta name="theme-color" content="#e9e3d3" />
-    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
-    <link rel="manifest" href="./manifest.webmanifest?v=1.5.34" />
+    <meta name="application-name" content="Annies Fjärilar" />
+    <meta name="apple-mobile-web-app-title" content="Annies Fjärilar" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="icon" href="./assets/favicon/favicon.ico?v=1.5.61" sizes="any" />
+    <link rel="icon" href="./assets/favicon/favicon.svg?v=1.5.61" type="image/svg+xml" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png?v=1.5.61" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png?v=1.5.61" />
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple/apple-touch-icon.png?v=1.5.61" />
+    <link rel="apple-touch-icon" sizes="167x167" href="./assets/apple/apple-touch-icon-167x167.png?v=1.5.61" />
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/apple/apple-touch-icon-152x152.png?v=1.5.61" />
+    <link rel="manifest" href="./manifest.webmanifest?v=1.5.61" />
     <link rel="preconnect" href="https://upload.wikimedia.org" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,7 +30,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles.css?v=1.5.34" />
+    <link rel="stylesheet" href="./styles.css?v=1.5.61" />
   </head>
   <body>
     <div class="app-shell">
@@ -52,8 +62,8 @@
 
         <button class="annie-button" id="annie-button" type="button" aria-label="Tryck på Annie för en liten animation">
           <span class="annie-frame">
-            <img class="annie-img annie-img-open" src="assets/annie-refined-full-head.png?v=1.5.34" alt="Annie med lugna blå ögon, rosa hårband och ett brett tecknat tandgrin" />
-            <img class="annie-img annie-img-blink" src="assets/annie-refined-full-head-blink.png?v=1.5.34" alt="" aria-hidden="true" />
+            <img class="annie-img annie-img-open" src="assets/annie-refined-full-head.png?v=1.5.61" alt="Annie med lugna blå ögon, rosa hårband och ett brett tecknat tandgrin" />
+            <img class="annie-img annie-img-blink" src="assets/annie-refined-full-head-blink.png?v=1.5.61" alt="" aria-hidden="true" />
           </span>
         </button>
 
@@ -159,6 +169,10 @@
                 <span>Beskrivning *</span>
                 <textarea id="custom-description" rows="3" required placeholder="Kort kännetecken, färg, plats eller varför den är speciell..."></textarea>
               </label>
+              <label>
+                <span>Taggar <small>(valfritt)</small></span>
+                <input id="custom-tags" type="text" placeholder="Ex. gul, äng, sommar" autocomplete="off" />
+              </label>
               <div class="form-grid two-columns">
                 <label class="file-button file-button--light">
                   <input id="custom-image-one" type="file" accept="image/*" required />
@@ -170,7 +184,6 @@
                 </label>
               </div>
               <button class="primary-button" type="submit">Spara egen fjäril</button>
-              <p class="form-hint">Egna fjärilar sparas lokalt i webbläsaren och visas i både Fjärilar och Samling.</p>
             </form>
           </details>
 
@@ -219,8 +232,8 @@
           <section class="collector" id="collector" aria-label="Lägg till en fjäril i samlingen" hidden>
             <div class="collector-head">
               <div>
-                <h3>Ny fjäril</h3>
-                <p>Ladda upp en bild, beskriv, spara.</p>
+                <h3 id="collection-form-title">Ny fjäril</h3>
+                <p id="collection-form-lead">Ladda upp en bild, beskriv, spara.</p>
               </div>
               <button class="collector-close" id="close-collection-form" type="button" aria-label="Stäng formuläret">×</button>
             </div>
@@ -248,6 +261,12 @@
                   <textarea id="observation-note" rows="3" placeholder="Ex. Satt på rödklöver nära bryggan..."></textarea>
                 </label>
 
+
+                <label>
+                  <span>Annies fjärilberättelse <small>(valfritt)</small></span>
+                  <textarea id="observation-story" rows="4" placeholder="Vad har fjärilen gjort idag? Vilket äventyr har den varit med om?"></textarea>
+                </label>
+
                 <div class="form-grid two-columns">
                   <label>
                     <span>Datum</span>
@@ -255,7 +274,7 @@
                   </label>
 
                   <div class="location-picker" aria-label="Frivillig plats">
-                    <span class="location-picker-label">Plats <small>valfritt</small></span>
+                    <span class="location-picker-label">Plats <small>(valfritt)</small></span>
                     <button class="ghost-button location-add-button" id="add-location" type="button">Lägg till plats</button>
                     <div class="location-status" id="location-status" hidden aria-live="polite">
                       <span id="location-status-text">Plats tillagd</span>
@@ -368,12 +387,35 @@
       </div>
     </div>
 
+    <div class="share-card-modal" id="share-card-modal" hidden role="dialog" aria-modal="true" aria-labelledby="share-card-title">
+      <div class="share-card-panel">
+        <div class="share-card-head">
+          <div>
+            <p class="editor-kicker">Förhandsvisning</p>
+            <h3 id="share-card-title">Fjärilskort</h3>
+            <p id="share-card-status">Kortet är klart att laddas ner.</p>
+          </div>
+          <button class="share-card-close" id="share-card-close" type="button" aria-label="Stäng delningskort">×</button>
+        </div>
+
+        <div class="share-card-preview-shell">
+          <img id="share-card-preview" alt="Förhandsvisning av delningskort" />
+        </div>
+
+        <div class="share-card-actions">
+          <a class="primary-button" id="share-card-download" href="#" download="annies-fjarilskort.png">Ladda ner kort</a>
+          <button class="primary-button share-native-button" id="share-card-native" type="button" hidden>Dela kort</button>
+        </div>
+      </div>
+    </div>
+
+
     <div class="lightbox" id="lightbox" hidden>
       <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Stäng bild">×</button>
       <img id="lightbox-image" alt="Förstorad fjärilsbild" />
       <p>Tryck på bilden för att zooma lite.</p>
     </div>
 
-    <script src="./script.js?v=1.5.34" type="module"></script>
+    <script src="./script.js?v=1.5.61" type="module"></script>
   </body>
 </html>

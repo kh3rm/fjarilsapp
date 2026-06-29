@@ -9,6 +9,8 @@ create table if not exists public.sightings (
   butterfly_id text not null,
   image_path text not null,
   note text,
+  story text,
+  location jsonb,
   spotted_at date default current_date,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -30,9 +32,10 @@ create table if not exists public.custom_butterflies (
 -- Om tabellen redan hann skapas med en äldre variant lägger detta till app_id.
 alter table public.custom_butterflies add column if not exists app_id text;
 
--- Version 1.5.34 — frivillig platsdata för samlingsposter.
--- Frontend skickar detta som ett litet JSON-objekt med lat/lon/accuracy/capturedAt.
+-- Idempotent skydd om schema.sql körs mot en äldre testdatabas.
+-- Nya tomma projekt får kolumnerna direkt via create table ovan.
 alter table public.sightings add column if not exists location jsonb;
+alter table public.sightings add column if not exists story text;
 
 create unique index if not exists custom_butterflies_user_app_id_idx
 on public.custom_butterflies (user_id, app_id)
@@ -157,7 +160,7 @@ using (
   and (storage.foldername(name))[1] = auth.uid()::text
 );
 
--- Version 1.5.34 — kanonisk fjärilskatalog
+-- Version 1.5.44 — kanonisk fjärilskatalog
 -- Både grundarter och egna arter kan ligga i public.butterflies.
 -- data/butterflies.json finns kvar som offline/bootstrap-fallback i frontend.
 

@@ -1,7 +1,7 @@
-import { SUPABASE_CONFIG } from './supabase-config.js?v=1.5.34';
+import { SUPABASE_CONFIG } from './supabase-config.js?v=1.5.61';
 
 const APP_ID = 'annies-fjarilar';
-const DATA_URL = './data/butterflies.json?v=1.5.34';
+const DATA_URL = './data/butterflies.json?v=1.5.61';
 const COLLECTION_KEY = 'fjarilsguiden.collection.v1';
 const CUSTOM_SPECIES_KEY = 'fjarilsguiden.customSpecies.v1';
 const BUTTERFLY_EDITS_KEY = 'annies-fjarilar.butterflyEdits.v1';
@@ -27,6 +27,7 @@ const state = {
   deletedButterflyIds: [],
   butterfliesTableAvailable: false,
   editingButterflyId: '',
+  editingObservationId: '',
   query: '',
   pendingImageData: '',
   pendingFileName: '',
@@ -37,6 +38,9 @@ const state = {
   cloudImageUrls: new Map(),
   leafletPromise: null,
   activeLocationMap: null,
+  preloadedReferenceImages: new Set(),
+  shareCardObjectUrl: '',
+  shareCardCurrent: null,
 };
 
 const refs = {
@@ -49,6 +53,8 @@ const refs = {
   resultLine: document.getElementById('result-line'),
   speciesSelect: document.getElementById('species-select'),
   collector: document.getElementById('collector'),
+  collectionFormTitle: document.getElementById('collection-form-title'),
+  collectionFormLead: document.getElementById('collection-form-lead'),
   collectionTools: document.getElementById('collection-tools'),
   showCollectionForm: document.getElementById('show-collection-form'),
   closeCollectionForm: document.getElementById('close-collection-form'),
@@ -58,6 +64,7 @@ const refs = {
   previewPlaceholder: document.getElementById('preview-placeholder'),
   form: document.getElementById('collection-form'),
   note: document.getElementById('observation-note'),
+  collectionStory: document.getElementById('observation-story'),
   date: document.getElementById('observation-date'),
   addLocation: document.getElementById('add-location'),
   removeLocation: document.getElementById('remove-location'),
@@ -78,6 +85,7 @@ const refs = {
   customName: document.getElementById('custom-name'),
   customScientific: document.getElementById('custom-scientific'),
   customDescription: document.getElementById('custom-description'),
+  customTags: document.getElementById('custom-tags'),
   customImageOne: document.getElementById('custom-image-one'),
   customImageTwo: document.getElementById('custom-image-two'),
   cloudPanel: document.getElementById('cloud-panel'),
@@ -94,6 +102,14 @@ const refs = {
   locationMap: document.getElementById('location-map'),
   mapModalMeta: document.getElementById('map-modal-meta'),
   mapExternalLink: document.getElementById('map-external-link'),
+  shareCardModal: document.getElementById('share-card-modal'),
+  shareCardClose: document.getElementById('share-card-close'),
+  shareCardPreview: document.getElementById('share-card-preview'),
+  shareCardStatus: document.getElementById('share-card-status'),
+  shareCardDownload: document.getElementById('share-card-download'),
+  shareCardNative: document.getElementById('share-card-native'),
+  shareCardCopy: document.getElementById('share-card-copy'),
+  shareCardMail: document.getElementById('share-card-mail'),
   lightbox: document.getElementById('lightbox'),
   lightboxImage: document.getElementById('lightbox-image'),
   lightboxClose: document.getElementById('lightbox-close'),
@@ -126,6 +142,7 @@ async function init() {
   wireAuth();
   wireLightbox();
   wireLocationMap();
+  wireShareCardModal();
   registerServiceWorker();
   setToday();
   loadButterflyLocalEdits();
@@ -236,7 +253,15 @@ function wireNavigation() {
 
 function wireAnnie() {
   if (!refs.annieButton) return;
-  const moves = ['is-hop', 'is-flip', 'is-twirl'];
+  const moves = [
+    'is-hop',
+    'is-hop-medium',
+    'is-hop-small',
+    'is-lean-left-soft',
+    'is-lean-left-deep',
+    'is-lean-right-soft',
+    'is-lean-right-deep',
+  ];
   refs.annieButton.addEventListener('click', () => {
     if (reducedMotionQuery.matches) return;
     moves.forEach((move) => refs.annieButton.classList.remove(move));
@@ -317,12 +342,15 @@ function wireCollectionForm() {
       refs.previewImage.src = state.pendingImageData;
       refs.previewImage.hidden = false;
       refs.previewPlaceholder.hidden = true;
-      refs.storageHint.textContent = `Bild klar (${formatBytes(prepared.blob.size)}). Välj art och tryck “Lägg till”.`;
+      refs.storageHint.textContent = state.editingObservationId
+        ? `Ny bild klar (${formatBytes(prepared.blob.size)}). Tryck “Spara ändringar”.`
+        : `Bild klar (${formatBytes(prepared.blob.size)}). Välj art och tryck “Lägg till”.`;
       updateAddButtonState();
     } catch (error) {
       console.error(error);
       showToast('Kunde inte läsa eller komprimera bilden. Prova en annan fil.');
       resetPendingImage();
+      updateAddButtonState();
     }
   });
 
@@ -332,14 +360,16 @@ function wireCollectionForm() {
 
   refs.form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    await addObservation();
+    await saveCollectionForm();
   });
 
   refs.showCollectionForm?.addEventListener('click', () => {
+    resetCollectionForm();
     setCollectionFormVisible(true, { scrollToForm: true });
   });
 
   refs.closeCollectionForm?.addEventListener('click', () => {
+    resetCollectionForm();
     setCollectionFormVisible(false);
   });
 
@@ -347,6 +377,18 @@ function wireCollectionForm() {
     const deleteButton = event.target.closest('[data-action="delete-observation"]');
     if (deleteButton) {
       await deleteObservation(deleteButton.dataset.id);
+      return;
+    }
+
+    const editButton = event.target.closest('[data-action="edit-observation"]');
+    if (editButton) {
+      await openObservationEditor(editButton.dataset.id);
+      return;
+    }
+
+    const shareButton = event.target.closest('[data-action="share-card"]');
+    if (shareButton) {
+      await shareCollectionCard(shareButton.dataset.id);
       return;
     }
 
@@ -590,9 +632,13 @@ function readButterflyEditorFields(existing = {}) {
 }
 
 function splitTags(value = '') {
-  return value
-    .split(',')
-    .map((tag) => tag.trim())
+  return normalizeTagList(value);
+}
+
+function normalizeTagList(value = []) {
+  const rawTags = Array.isArray(value) ? value : String(value || '').split(',');
+  return rawTags
+    .map((tag) => String(tag || '').trim())
     .filter(Boolean)
     .filter((tag, index, tags) => tags.findIndex((candidate) => candidate.toLowerCase() === tag.toLowerCase()) === index);
 }
@@ -946,54 +992,93 @@ function renderButterflies() {
 
   refs.butterflyList.innerHTML = filtered.map(renderButterflyCard).join('');
   hydrateCloudImages();
+  warmReferenceImageCache(filtered);
 }
 
-function renderButterflyCard(butterfly) {
+function renderButterflyCard(butterfly, index = 0) {
   const firstImage = butterfly.images?.[0] || { url: IMAGE_PLACEHOLDER };
   const secondImage = butterfly.images?.[1];
   const hasSecondImage = Boolean(secondImage?.url || secondImage?.path);
   const tags = (butterfly.taggar || []).slice(0, 6).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('');
   const cardNumber = butterfly.custom ? 'egen' : `#${butterfly.id}`;
-  const sourceNote = butterfly.custom ? renderSyncMini(butterfly) : (butterfly.edited ? 'Redigerad fjäril' : 'Referensbilder från Commons');
+  const sourceNote = butterfly.custom ? renderSyncMini(butterfly) : (butterfly.edited ? 'Redigerad fjäril' : '');
 
   return `
     <article class="butterfly-card" data-butterfly-id="${escapeAttr(butterfly.id)}">
-      <div class="card-media ${hasSecondImage ? '' : 'is-single'}" aria-label="Referensbilder för ${escapeHtml(butterfly.svenskt_namn)}">
-        <div class="card-media-main">
-          ${renderImage(firstImage, butterfly.svenskt_namn)}
-        </div>
-        ${hasSecondImage ? `
-          <div class="card-media-secondary">
-            ${renderImage(secondImage, `${butterfly.svenskt_namn}, extra referensbild`)}
-          </div>
-        ` : ''}
-      </div>
       <div class="card-content">
         <div class="card-top">
           <div>
             <h3 class="butterfly-name">${escapeHtml(butterfly.svenskt_namn)}</h3>
             <p class="scientific-name"><em>${escapeHtml(butterfly.vetenskapligt_namn)}</em></p>
           </div>
-          <span class="card-index ${butterfly.custom ? 'is-custom' : ''}">${escapeHtml(cardNumber)}</span>
+          <div class="card-controls">
+            <span class="card-index ${butterfly.custom ? 'is-custom' : ''}">${escapeHtml(cardNumber)}</span>
+            <button class="butterfly-edit-button" type="button" data-action="edit-butterfly" data-id="${escapeAttr(butterfly.id)}" aria-label="Redigera ${escapeAttr(butterfly.svenskt_namn)}">✎</button>
+          </div>
         </div>
         <p class="description">${escapeHtml(butterfly.beskrivning)}</p>
         ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-        <div class="card-actions">
-          <button class="card-button" type="button" data-action="quick-add" data-id="${escapeAttr(butterfly.id)}">Lägg till i samling</button>
-          <span class="source-note">${sourceNote}</span>
-        </div>
       </div>
-      <button class="butterfly-edit-button" type="button" data-action="edit-butterfly" data-id="${escapeAttr(butterfly.id)}" aria-label="Redigera ${escapeAttr(butterfly.svenskt_namn)}">✎</button>
+      <div class="card-media ${hasSecondImage ? '' : 'is-single'}" aria-label="Referensbilder för ${escapeHtml(butterfly.svenskt_namn)}">
+        <div class="card-media-main">
+          ${renderImage(firstImage, butterfly.svenskt_namn, { eager: index < 4, highPriority: index < 2 })}
+        </div>
+        ${hasSecondImage ? `
+          <div class="card-media-secondary">
+            ${renderImage(secondImage, `${butterfly.svenskt_namn}, extra referensbild`, { eager: index < 2 })}
+          </div>
+        ` : ''}
+      </div>
+      <div class="card-actions">
+        <button class="card-button" type="button" data-action="quick-add" data-id="${escapeAttr(butterfly.id)}">Lägg till i samling</button>
+        ${sourceNote ? `<span class="source-note">${sourceNote}</span>` : ''}
+      </div>
     </article>
   `;
 }
 
-function renderImage(image = {}, alt = '') {
+function renderImage(image = {}, alt = '', options = {}) {
   const path = image.path || image.imagePath || '';
   const cached = path ? state.cloudImageUrls.get(path) : '';
   const src = image.url || cached || IMAGE_PLACEHOLDER;
   const cloudAttr = path && !image.url && !cached ? `data-cloud-image="${escapeAttr(path)}"` : '';
-  return `<img src="${escapeAttr(src)}" alt="${escapeHtml(alt)}" loading="lazy" ${cloudAttr} onerror="this.src='${IMAGE_PLACEHOLDER}'" />`;
+  const loading = options.eager ? 'eager' : 'lazy';
+  const priority = options.highPriority ? 'high' : 'low';
+  return `<img src="${escapeAttr(src)}" alt="${escapeHtml(alt)}" loading="${loading}" decoding="async" fetchpriority="${priority}" ${cloudAttr} onerror="this.src='${IMAGE_PLACEHOLDER}'" />`;
+}
+
+function warmReferenceImageCache(butterflies = []) {
+  if (!Array.isArray(butterflies) || !butterflies.length) return;
+  if (navigator.connection?.saveData) return;
+
+  const urls = [];
+  for (const butterfly of butterflies) {
+    for (const image of butterfly.images || []) {
+      const url = image?.url;
+      if (url && !isDataUrl(url) && !state.preloadedReferenceImages.has(url)) urls.push(url);
+    }
+  }
+
+  if (!urls.length) return;
+
+  let index = 0;
+  const loadNext = () => {
+    const url = urls[index++];
+    if (!url) return;
+    state.preloadedReferenceImages.add(url);
+    const image = new Image();
+    image.decoding = 'async';
+    image.loading = 'eager';
+    image.onload = image.onerror = () => {
+      const schedule = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 120));
+      schedule(loadNext, { timeout: 900 });
+    };
+    image.src = url;
+    if (typeof image.decode === 'function') image.decode().catch(() => {});
+  };
+
+  const schedule = window.requestIdleCallback || ((callback) => window.setTimeout(callback, 160));
+  schedule(loadNext, { timeout: 1200 });
 }
 
 function renderSyncMini(item) {
@@ -1026,8 +1111,33 @@ function setCollectionFormVisible(isVisible, options = {}) {
   }
 }
 
+function setCollectionFormMode(mode = 'add') {
+  const isEdit = mode === 'edit';
+  if (refs.collectionFormTitle) refs.collectionFormTitle.textContent = isEdit ? 'Redigera kort' : 'Ny fjäril';
+  if (refs.collectionFormLead) refs.collectionFormLead.textContent = isEdit
+    ? 'Justera bild, art, berättelse eller plats.'
+    : 'Ladda upp en bild, beskriv, spara.';
+  if (refs.addButton) refs.addButton.textContent = isEdit ? 'Spara ändringar' : 'Lägg till';
+  if (refs.uploadPreview) refs.uploadPreview.setAttribute('aria-label', isEdit ? 'Byt fjärilsbild' : 'Ladda upp fjärilsbild');
+}
+
+function getEditingObservation() {
+  if (!state.editingObservationId) return null;
+  return state.collection.find((item) => String(item.id) === String(state.editingObservationId)) || null;
+}
+
 function updateAddButtonState() {
-  refs.addButton.disabled = !(state.pendingImageData && refs.speciesSelect.value);
+  const editingEntry = getEditingObservation();
+  const hasImage = Boolean(state.pendingImageData || editingEntry?.imageData || editingEntry?.imagePath);
+  refs.addButton.disabled = !(hasImage && refs.speciesSelect.value);
+}
+
+async function saveCollectionForm() {
+  if (state.editingObservationId) {
+    await updateObservation();
+    return;
+  }
+  await addObservation();
 }
 
 async function addObservation() {
@@ -1045,6 +1155,7 @@ async function addObservation() {
     imagePath: null,
     originalFileName: state.pendingFileName,
     note: refs.note.value.trim(),
+    story: (refs.collectionStory?.value || '').trim(),
     date: refs.date.value || new Date().toISOString().slice(0, 10),
     location: state.pendingLocation ? { ...state.pendingLocation } : null,
     createdAt: new Date().toISOString(),
@@ -1063,6 +1174,76 @@ async function addObservation() {
   if (state.auth) {
     syncAll({ silent: true });
   }
+}
+
+async function updateObservation() {
+  const entry = getEditingObservation();
+  const butterfly = findButterfly(refs.speciesSelect.value);
+  if (!entry || !butterfly) return;
+
+  const hasNewImage = Boolean(state.pendingImageData);
+  if (!hasNewImage && !entry.imageData && !entry.imagePath) {
+    showToast('Välj en bild innan du sparar kortet.');
+    return;
+  }
+
+  Object.assign(entry, {
+    butterflyId: butterfly.id,
+    butterflyName: butterfly.svenskt_namn,
+    scientificName: butterfly.vetenskapligt_namn,
+    imageData: hasNewImage ? state.pendingImageData : (entry.imageData || ''),
+    imageMimeType: hasNewImage
+      ? (state.pendingMimeType || dataUrlMimeType(state.pendingImageData) || entry.imageMimeType || 'image/jpeg')
+      : (entry.imageMimeType || dataUrlMimeType(entry.imageData || '') || 'image/jpeg'),
+    imagePath: hasNewImage ? null : (entry.imagePath || null),
+    originalFileName: hasNewImage ? (state.pendingFileName || entry.originalFileName || '') : (entry.originalFileName || ''),
+    note: refs.note.value.trim(),
+    story: (refs.collectionStory?.value || '').trim(),
+    date: refs.date.value || new Date().toISOString().slice(0, 10),
+    location: state.pendingLocation ? { ...state.pendingLocation } : null,
+    customSpecies: Boolean(butterfly.custom),
+    updatedAt: new Date().toISOString(),
+    syncStatus: state.auth ? 'pending' : 'local',
+    syncError: '',
+  });
+
+  await saveCollection();
+  renderCollection();
+  resetCollectionForm();
+  setCollectionFormVisible(false);
+  showToast('Kortet uppdaterades.');
+
+  if (state.auth) {
+    syncAll({ silent: true });
+  }
+}
+
+async function openObservationEditor(id) {
+  const entry = state.collection.find((item) => String(item.id) === String(id));
+  if (!entry) return;
+
+  state.editingObservationId = String(entry.id);
+  setCollectionFormMode('edit');
+  setCollectionFormVisible(true, { scrollToForm: true });
+
+  refs.speciesSelect.value = String(entry.butterflyId || '');
+  refs.note.value = entry.note || '';
+  if (refs.collectionStory) refs.collectionStory.value = entry.story || '';
+  refs.date.value = entry.date || new Date().toISOString().slice(0, 10);
+  state.pendingLocation = normalizeLocation(entry.location);
+  renderPendingLocationState();
+
+  state.pendingImageData = '';
+  state.pendingMimeType = entry.imageMimeType || '';
+  state.pendingFileName = entry.originalFileName || '';
+  refs.photoInput.value = '';
+
+  const imageSrc = await resolveCollectionImageSource(entry).catch(() => entry.imageData || IMAGE_PLACEHOLDER);
+  refs.previewImage.src = imageSrc;
+  refs.previewImage.hidden = false;
+  refs.previewPlaceholder.hidden = true;
+  refs.storageHint.textContent = 'Kortet redigeras. Byt bild vid behov och tryck “Spara ändringar”.';
+  updateAddButtonState();
 }
 
 async function addCustomSpecies() {
@@ -1102,7 +1283,7 @@ async function addCustomSpecies() {
       vetenskapligt_namn: scientific,
       beskrivning: description,
       bildkategori_commons_url: '',
-      taggar: buildCustomTags(description),
+      taggar: splitTags(refs.customTags?.value || ''),
       images,
       createdAt: new Date().toISOString(),
       syncStatus: state.auth ? 'pending' : 'local',
@@ -1128,16 +1309,6 @@ async function addCustomSpecies() {
   }
 }
 
-function buildCustomTags(description) {
-  const text = description.toLowerCase();
-  const tags = ['egen'];
-  const candidates = ['gul', 'orange', 'blå', 'brun', 'vit', 'svart', 'äng', 'skog', 'trädgård', 'sommar', 'vår'];
-  candidates.forEach((tag) => {
-    if (text.includes(tag)) tags.push(tag);
-  });
-  return [...new Set(tags)];
-}
-
 function renderCollection() {
   refs.metricCollection.textContent = String(state.collection.length);
 
@@ -1152,6 +1323,7 @@ function renderCollection() {
     const cloudSrc = entry.imagePath ? state.cloudImageUrls.get(entry.imagePath) : '';
     const imageSrc = entry.imageData || cloudSrc || IMAGE_PLACEHOLDER;
     const cloudAttr = entry.imagePath && !entry.imageData && !cloudSrc ? `data-cloud-image="${escapeAttr(entry.imagePath)}"` : '';
+    const story = renderCollectionStory(entry);
     return `
       <article class="collection-card">
         <div class="collection-photo">
@@ -1159,11 +1331,18 @@ function renderCollection() {
           ${renderSyncChip(entry)}
         </div>
         <div class="collection-body">
-          <h3>${escapeHtml(entry.butterflyName)}</h3>
+          <div class="collection-head">
+            <h3>${escapeHtml(entry.butterflyName)}</h3>
+            <div class="card-controls">
+              <button class="butterfly-edit-button" type="button" data-action="edit-observation" data-id="${escapeAttr(entry.id)}" aria-label="Redigera ${escapeAttr(entry.butterflyName)}">✎</button>
+            </div>
+          </div>
           <p class="collection-meta"><em>${escapeHtml(entry.scientificName)}</em> · ${formatDate(entry.date)}</p>
           ${entry.note ? `<p class="collection-note">${escapeHtml(entry.note)}</p>` : ''}
+          ${story}
           ${renderCollectionLocation(entry)}
           <div class="collection-card-actions">
+            <button class="mini-button share-card-button" type="button" data-action="share-card" data-id="${escapeAttr(entry.id)}">Skapa kort</button>
             ${entry.syncStatus === 'error' ? `<button class="mini-button" type="button" data-action="retry-sync">Försök igen</button>` : ''}
             <button class="delete-button" type="button" data-action="delete-observation" data-id="${escapeAttr(entry.id)}">Ta bort</button>
           </div>
@@ -1177,6 +1356,18 @@ function renderCollection() {
   updateStorageHint();
 }
 
+function renderCollectionStory(entry) {
+  const story = String(entry?.story || '').trim();
+  if (!story) return '';
+
+  return `
+    <div class="collection-story">
+      <span>Annies fjärilberättelse</span>
+      <p>${escapeHtml(story)}</p>
+    </div>
+  `;
+}
+
 function renderCollectionLocation(entry) {
   const location = normalizeLocation(entry?.location);
   if (!location) return '';
@@ -1187,6 +1378,564 @@ function renderCollectionLocation(entry) {
       <button class="mini-button" type="button" data-action="view-location" data-id="${escapeAttr(entry.id)}">Visa karta</button>
     </div>
   `;
+}
+
+
+function wireShareCardModal() {
+  refs.shareCardClose?.addEventListener('click', closeShareCardModal);
+  refs.shareCardModal?.addEventListener('click', (event) => {
+    if (event.target === refs.shareCardModal) closeShareCardModal();
+  });
+  refs.shareCardNative?.addEventListener('click', shareCurrentCardFromModal);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && refs.shareCardModal && !refs.shareCardModal.hidden) closeShareCardModal();
+  });
+}
+
+async function shareCollectionCard(entryId) {
+  const entry = state.collection.find((item) => String(item.id) === String(entryId));
+  if (!entry) return;
+
+  const button = document.querySelector(`[data-action="share-card"][data-id="${cssEscape(String(entryId))}"]`);
+  const previousText = button?.textContent || '';
+  if (button) {
+    button.disabled = true;
+    button.textContent = 'Skapar kort…';
+  }
+
+  try {
+    const card = await createShareCard(entry);
+    openShareCardModal(card);
+  } catch (error) {
+    console.error('Kunde inte skapa fjärilskort.', error);
+    showToast('Kunde inte skapa fjärilskortet just nu.');
+  } finally {
+    if (button) {
+      button.disabled = false;
+      button.textContent = previousText || 'Skapa kort';
+    }
+  }
+}
+
+async function createShareCard(entry) {
+  const imageSrc = await resolveCollectionImageSource(entry);
+  const image = await loadCanvasImage(imageSrc);
+  const appIcon = await loadCanvasImage('./assets/pwa/icon-192x192.png?v=1.5.61').catch(() => null);
+  const mapMarker = await loadCanvasImage('./assets/map-pin-clean.svg?v=1.5.61').catch(() => null);
+  const location = normalizeLocation(entry.location);
+  const cardBlob = await drawShareCard(entry, image, location, appIcon, mapMarker);
+  const objectUrl = URL.createObjectURL(cardBlob);
+  const title = `${entry.butterflyName || 'Fjäril'} · Annies fjärilar`;
+  const locationUrl = location ? buildOsmMapUrl(location) : '';
+  const fileName = `${slugify(entry.butterflyName || 'annies-fjaril')}-kort.png`;
+  return { blob: cardBlob, objectUrl, title, locationUrl, fileName };
+}
+
+async function resolveCollectionImageSource(entry) {
+  if (entry.imageData) return entry.imageData;
+  if (entry.imagePath && state.cloudImageUrls.has(entry.imagePath)) return state.cloudImageUrls.get(entry.imagePath);
+  if (entry.imagePath && state.auth) return getCloudImageUrl(entry.imagePath);
+  return IMAGE_PLACEHOLDER;
+}
+
+async function drawShareCard(entry, image, location, appIcon = null, mapMarker = null) {
+  const width = 1200;
+  const margin = 72;
+  const contentWidth = width - margin * 2;
+  const tempCanvas = document.createElement('canvas');
+  const ctx = tempCanvas.getContext('2d');
+  const colors = {
+    paper: '#fbf7ef',
+    panel: '#f7f1e6',
+    panelWarm: '#f8eed4',
+    ink: '#1b1713',
+    muted: '#6b655b',
+    line: '#241f19',
+    lineSoft: 'rgba(36, 31, 25, 0.14)',
+    leaf: '#d7e6c4',
+    leafDeep: '#214c33',
+  };
+
+  const titleLines = wrapCanvasText(ctx, entry.butterflyName || 'Okänd fjäril', contentWidth - 300, '700 80px "Latin Modern Roman", Georgia, serif', 2);
+  const noteLines = entry.note ? wrapCanvasText(ctx, entry.note, contentWidth - 84, '500 30px Inter, system-ui, sans-serif', 8) : [];
+  const story = String(entry.story || '').trim();
+  const storyLines = story ? wrapCanvasText(ctx, story, contentWidth - 92, '500 32px "Latin Modern Roman", Georgia, serif', 24) : [];
+  const hasNotes = noteLines.length || storyLines.length;
+  const photoHeight = 612;
+  const titleHeight = titleLines.length * 86;
+  const noteBlockHeight = noteLines.length ? 88 + noteLines.length * 42 : 0;
+  const storyBlockHeight = storyLines.length ? 92 + storyLines.length * 46 : 0;
+  const locationBlockHeight = location ? 168 : 0;
+  const emptyCopyHeight = hasNotes ? 0 : 82;
+  const footerBlockHeight = 128;
+  const height = Math.max(1440, 48 + 34 + titleHeight + 72 + photoHeight + 34 + noteBlockHeight + storyBlockHeight + emptyCopyHeight + locationBlockHeight + footerBlockHeight + 54);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const draw = canvas.getContext('2d');
+
+  draw.fillStyle = colors.paper;
+  draw.fillRect(0, 0, width, height);
+
+  drawBrandLockup(draw, appIcon, width - margin, 70, colors);
+
+  let y = 92;
+  draw.font = '700 80px "Latin Modern Roman", Georgia, serif';
+  draw.fillStyle = colors.ink;
+  titleLines.forEach((line) => {
+    draw.fillText(line, margin, y);
+    y += 86;
+  });
+
+  draw.font = 'italic 34px "Latin Modern Roman", Georgia, serif';
+  draw.fillStyle = colors.muted;
+  const scientific = entry.scientificName ? entry.scientificName : 'Egen samlingsfjäril';
+  draw.fillText(scientific, margin, y + 2);
+
+  y += 54;
+  drawFramedSharePhoto(draw, image, margin, y, contentWidth, photoHeight, colors);
+  y += photoHeight + 34;
+
+  if (noteLines.length) {
+    y = drawTextPanel(draw, {
+      x: margin,
+      y,
+      width: contentWidth,
+      label: 'ANTECKNING',
+      lines: noteLines,
+      font: '500 30px Inter, system-ui, sans-serif',
+      lineHeight: 42,
+      colors,
+    });
+  }
+
+  if (storyLines.length) {
+    y = drawTextPanel(draw, {
+      x: margin,
+      y,
+      width: contentWidth,
+      label: 'ANNIES FJÄRILBERÄTTELSE',
+      lines: storyLines,
+      font: '500 32px "Latin Modern Roman", Georgia, serif',
+      lineHeight: 46,
+      colors,
+      warm: true,
+    });
+  }
+
+  if (!hasNotes) {
+    draw.font = '500 29px Inter, system-ui, sans-serif';
+    draw.fillStyle = colors.muted;
+    draw.fillText('En ny fjäril i Annies samling.', margin + 2, y + 24);
+    y += 82;
+  }
+
+  if (location) {
+    y = drawLocationSharePanel(draw, location, margin, y, contentWidth, colors, mapMarker);
+  }
+
+  const footerY = height - 46;
+  draw.strokeStyle = colors.lineSoft;
+  draw.lineWidth = 2;
+  draw.beginPath();
+  draw.moveTo(margin, footerY - 52);
+  draw.lineTo(width - margin, footerY - 52);
+  draw.stroke();
+
+  drawAnnieSignature(draw, width / 2, footerY + 2, 0.9, colors);
+
+  return canvasToBlob(canvas, 'image/png', 0.96);
+}
+
+function drawSubtlePaperTexture(ctx, width, height) {
+  const soft = ctx.createRadialGradient(width * 0.15, height * 0.08, 0, width * 0.15, height * 0.08, 460);
+  soft.addColorStop(0, 'rgba(255, 249, 237, 0.82)');
+  soft.addColorStop(1, 'rgba(255, 249, 237, 0)');
+  ctx.fillStyle = soft;
+  ctx.fillRect(0, 0, width, height);
+
+  const warm = ctx.createRadialGradient(width * 0.86, height * 0.92, 0, width * 0.86, height * 0.92, 500);
+  warm.addColorStop(0, 'rgba(242, 207, 117, 0.15)');
+  warm.addColorStop(1, 'rgba(242, 207, 117, 0)');
+  ctx.fillStyle = warm;
+  ctx.fillRect(0, 0, width, height);
+}
+
+function drawFramedSharePhoto(ctx, image, x, y, width, height, colors) {
+  roundRect(ctx, x, y, width, height, 28);
+  ctx.fillStyle = '#f4eee2';
+  ctx.fill();
+  ctx.strokeStyle = colors.line;
+  ctx.lineWidth = 2.2;
+  ctx.stroke();
+
+  const mat = { x: x + 18, y: y + 18, width: width - 36, height: height - 36, radius: 22 };
+  roundRect(ctx, mat.x, mat.y, mat.width, mat.height, mat.radius);
+  ctx.fillStyle = '#fffaf1';
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(36, 31, 25, 0.12)';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+
+  const imageBox = { x: mat.x + 20, y: mat.y + 20, width: mat.width - 40, height: mat.height - 40, radius: 16 };
+  drawImageContained(ctx, image, imageBox.x, imageBox.y, imageBox.width, imageBox.height, imageBox.radius, '#f7f1e6');
+  roundRect(ctx, imageBox.x, imageBox.y, imageBox.width, imageBox.height, imageBox.radius);
+  ctx.strokeStyle = 'rgba(36, 31, 25, 0.16)';
+  ctx.lineWidth = 1.3;
+  ctx.stroke();
+}
+
+function drawSmallCornerLeaf(ctx, x, y, flipX, flipY, colors) {
+  ctx.save();
+  ctx.translate(x, y);
+  ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
+  ctx.strokeStyle = 'rgba(33, 76, 51, 0.62)';
+  ctx.lineWidth = 2.2;
+  ctx.lineCap = 'round';
+  ctx.beginPath();
+  ctx.moveTo(0, 28);
+  ctx.quadraticCurveTo(10, 14, 26, 0);
+  ctx.stroke();
+  ctx.fillStyle = colors.leaf;
+  ctx.beginPath();
+  ctx.ellipse(23, 8, 6, 12, -0.7, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawTextPanel(ctx, { x, y, width, label, lines, font, lineHeight, colors, warm = false }) {
+  const height = 72 + lines.length * lineHeight;
+  roundRect(ctx, x, y, width, height, 24);
+  ctx.fillStyle = warm ? colors.panelWarm : colors.panel;
+  ctx.fill();
+  ctx.strokeStyle = colors.lineSoft;
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+
+  ctx.font = '900 21px Inter, system-ui, sans-serif';
+  ctx.fillStyle = warm ? colors.leafDeep : colors.muted;
+  ctx.fillText(label, x + 38, y + 40);
+
+  ctx.font = font;
+  ctx.fillStyle = colors.ink;
+  let textY = y + 86;
+  lines.forEach((line) => {
+    ctx.fillText(line, x + 38, textY);
+    textY += lineHeight;
+  });
+
+  return y + height + 22;
+}
+
+function drawLocationSharePanel(ctx, location, x, y, width, colors, markerImage = null) {
+  const height = 168;
+  roundRect(ctx, x, y, width, height, 24);
+  ctx.fillStyle = '#eef4ea';
+  ctx.fill();
+  ctx.strokeStyle = colors.lineSoft;
+  ctx.lineWidth = 1.6;
+  ctx.stroke();
+
+  const markerSize = 62;
+  const markerX = x + 40;
+  const markerY = y + (height - markerSize) / 2;
+  if (markerImage) {
+    ctx.drawImage(markerImage, markerX, markerY, markerSize, markerSize);
+  }
+
+  const textX = markerX + markerSize + 28;
+  ctx.font = '700 39px Inter, system-ui, sans-serif';
+  ctx.fillStyle = colors.ink;
+  ctx.fillText('Här hittades den', textX, y + 66);
+
+  ctx.font = '600 27px Inter, system-ui, sans-serif';
+  ctx.fillStyle = colors.muted;
+  ctx.fillText(`${Number(location.lat).toFixed(5)}, ${Number(location.lon).toFixed(5)}`, textX, y + 108);
+
+  const captured = formatDateTime(location.capturedAt);
+  if (captured) {
+    ctx.font = '600 21px Inter, system-ui, sans-serif';
+    ctx.fillStyle = colors.muted;
+    ctx.fillText(captured, textX, y + 138);
+  }
+
+  return y + height + 22;
+}
+
+function drawMapPin(ctx, cx, cy, colors, scale = 1) {
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.scale(scale, scale);
+  ctx.shadowColor = 'rgba(23, 20, 16, 0.18)';
+  ctx.shadowBlur = 13;
+  ctx.shadowOffsetY = 5;
+  ctx.fillStyle = colors.rose;
+  ctx.strokeStyle = colors.line;
+  ctx.lineWidth = 3;
+  ctx.beginPath();
+  ctx.arc(0, -22, 27, Math.PI * 0.12, Math.PI * 1.88);
+  ctx.lineTo(0, 48);
+  ctx.closePath();
+  ctx.fill();
+  ctx.stroke();
+  ctx.shadowColor = 'transparent';
+  ctx.beginPath();
+  ctx.arc(0, -22, 10, 0, Math.PI * 2);
+  ctx.fillStyle = colors.paper;
+  ctx.fill();
+  ctx.strokeStyle = 'rgba(28, 24, 18, 0.16)';
+  ctx.lineWidth = 1.4;
+  ctx.stroke();
+  ctx.restore();
+}
+
+function drawAnnieSignature(ctx, centerX, baselineY, scale, colors) {
+  ctx.save();
+  ctx.translate(centerX, baselineY);
+  ctx.rotate(-0.02);
+  ctx.font = `italic ${Math.round(58 * scale)}px "Latin Modern Roman", Georgia, serif`;
+  ctx.fillStyle = colors.ink;
+  ctx.textAlign = 'center';
+  ctx.fillText('/ Annie', 0, 0);
+  ctx.textAlign = 'left';
+  ctx.restore();
+}
+
+function drawBrandLockup(ctx, appIcon, rightX, baselineY, colors) {
+  const iconSize = 40;
+  const iconGap = 12;
+  const text = 'Annies fjärilar';
+  ctx.textAlign = 'right';
+  ctx.font = '900 24px Inter, system-ui, sans-serif';
+  const textWidth = ctx.measureText(text).width;
+  const iconX = rightX - iconSize;
+  const textRight = iconX - iconGap;
+  const iconY = baselineY - iconSize / 2 - 1;
+  if (appIcon) {
+    drawAppIcon(ctx, appIcon, iconX, iconY, iconSize);
+  }
+  ctx.fillStyle = colors.leafDeep;
+  ctx.fillText(text, textRight, baselineY + 8);
+  ctx.textAlign = 'left';
+}
+
+
+function drawAppIcon(ctx, image, x, y, size) {
+  ctx.save();
+  roundRect(ctx, x, y, size, size, size * 0.22);
+  ctx.clip();
+  ctx.drawImage(image, x, y, size, size);
+  ctx.restore();
+  roundRect(ctx, x, y, size, size, size * 0.22);
+  ctx.strokeStyle = 'rgba(28, 24, 18, 0.18)';
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+}
+
+function drawButterflyMark(ctx, x, y, size, colors) {
+  ctx.save();
+  ctx.translate(x + size / 2, y + size / 2);
+  ctx.scale(size / 120, size / 120);
+  ctx.fillStyle = colors.nectar;
+  ctx.strokeStyle = colors.line;
+  ctx.lineWidth = 4;
+  ctx.beginPath();
+  ctx.ellipse(-24, -8, 28, 38, -0.46, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = colors.blue;
+  ctx.beginPath();
+  ctx.ellipse(24, -8, 28, 38, 0.46, 0, Math.PI * 2);
+  ctx.fill();
+  ctx.stroke();
+  ctx.fillStyle = colors.leafDeep;
+  roundRect(ctx, -7, -38, 14, 78, 8);
+  ctx.fill();
+  ctx.restore();
+}
+
+function drawImageContained(ctx, image, x, y, width, height, radius, background = '#dce4d3') {
+  ctx.save();
+  roundRect(ctx, x, y, width, height, radius);
+  ctx.clip();
+  ctx.fillStyle = background;
+  ctx.fillRect(x, y, width, height);
+  const sourceWidth = image.naturalWidth || image.width || 1;
+  const sourceHeight = image.naturalHeight || image.height || 1;
+  const scale = Math.min(width / sourceWidth, height / sourceHeight);
+  const drawWidth = sourceWidth * scale;
+  const drawHeight = sourceHeight * scale;
+  const dx = x + (width - drawWidth) / 2;
+  const dy = y + (height - drawHeight) / 2;
+  ctx.drawImage(image, dx, dy, drawWidth, drawHeight);
+  ctx.restore();
+}
+
+function wrapCanvasText(ctx, text, maxWidth, font, maxLines = Infinity) {
+  ctx.font = font;
+  const words = String(text || '').replace(/\s+/g, ' ').trim().split(' ').filter(Boolean);
+  if (!words.length) return [];
+  const lines = [];
+  let line = '';
+
+  words.forEach((word) => {
+    const test = line ? `${line} ${word}` : word;
+    if (ctx.measureText(test).width <= maxWidth || !line) {
+      line = test;
+      return;
+    }
+    lines.push(line);
+    line = word;
+  });
+  if (line) lines.push(line);
+
+  if (lines.length > maxLines) {
+    const clipped = lines.slice(0, maxLines);
+    let last = clipped[clipped.length - 1];
+    while (last.length && ctx.measureText(`${last}…`).width > maxWidth) last = last.slice(0, -1).trim();
+    clipped[clipped.length - 1] = `${last}…`;
+    return clipped;
+  }
+  return lines;
+}
+
+function loadCanvasImage(src) {
+  return new Promise((resolve, reject) => {
+    const image = new Image();
+    image.decoding = 'async';
+    image.onload = () => resolve(image);
+    image.onerror = () => reject(new Error('Kunde inte läsa bilden till delningskortet.'));
+    if (!isDataUrl(src) && !String(src).startsWith('blob:')) image.crossOrigin = 'anonymous';
+    image.src = src;
+  });
+}
+
+function canvasToBlob(canvas, type = 'image/png', quality = 0.92) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((blob) => {
+      if (blob) resolve(blob);
+      else reject(new Error('Kunde inte exportera bildkort.'));
+    }, type, quality);
+  });
+}
+
+function openShareCardModal(card) {
+  if (!refs.shareCardModal || !refs.shareCardPreview) return;
+  revokeShareCardObjectUrl();
+  state.shareCardObjectUrl = card.objectUrl;
+  state.shareCardCurrent = {
+    ...card,
+    file: createShareCardFile(card),
+  };
+
+  refs.shareCardPreview.src = card.objectUrl;
+  refs.shareCardPreview.alt = `Förhandsvisning av fjärilskort för ${card.title}`;
+  if (refs.shareCardDownload) {
+    refs.shareCardDownload.href = card.objectUrl;
+    refs.shareCardDownload.download = card.fileName;
+  }
+
+  const canShare = canShareCurrentCard();
+  if (refs.shareCardNative) {
+    refs.shareCardNative.hidden = !canShare;
+    refs.shareCardNative.disabled = false;
+    refs.shareCardNative.textContent = 'Dela kort';
+  }
+  if (refs.shareCardStatus) {
+    refs.shareCardStatus.textContent = canShare
+      ? 'Kortet är klart. Ladda ner det eller dela här direkt.'
+      : 'Kortet är klart. Ladda ner det på vanligt sätt.';
+  }
+
+  refs.shareCardModal.hidden = false;
+  document.body.classList.add('has-modal-open');
+}
+
+function createShareCardFile(card) {
+  if (typeof File !== 'function' || !card?.blob) return null;
+  return new File([card.blob], card.fileName, { type: card.blob.type || 'image/png' });
+}
+
+function isMobileShareSurface() {
+  return window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
+
+function canShareCurrentCard() {
+  const file = state.shareCardCurrent?.file;
+  if (!file || !isMobileShareSurface() || !navigator.share) return false;
+  const sharePayload = { files: [file] };
+  if (state.shareCardCurrent?.locationUrl) sharePayload.url = state.shareCardCurrent.locationUrl;
+  return !navigator.canShare || navigator.canShare(sharePayload);
+}
+
+async function shareCurrentCardFromModal() {
+  const card = state.shareCardCurrent;
+  if (!card?.file || !canShareCurrentCard()) return;
+
+  if (refs.shareCardNative) {
+    refs.shareCardNative.disabled = true;
+    refs.shareCardNative.textContent = 'Delar…';
+  }
+
+  try {
+    const sharePayload = { files: [card.file] };
+    if (card.locationUrl) sharePayload.url = card.locationUrl;
+    await navigator.share(sharePayload);
+  } catch (error) {
+    if (error?.name !== 'AbortError') {
+      console.warn('Kunde inte dela fjärilskort.', error);
+      showToast('Kunde inte dela kortet automatiskt. Ladda ner det istället.');
+    }
+  } finally {
+    if (refs.shareCardNative) {
+      refs.shareCardNative.disabled = false;
+      refs.shareCardNative.textContent = 'Dela kort';
+    }
+  }
+}
+
+function closeShareCardModal() {
+  if (refs.shareCardModal) refs.shareCardModal.hidden = true;
+  if (refs.shareCardPreview) refs.shareCardPreview.removeAttribute('src');
+  if (refs.shareCardNative) refs.shareCardNative.hidden = true;
+  state.shareCardCurrent = null;
+  revokeShareCardObjectUrl();
+  document.body.classList.remove('has-modal-open');
+}
+
+function revokeShareCardObjectUrl(url = state.shareCardObjectUrl) {
+  if (url) URL.revokeObjectURL(url);
+  if (url === state.shareCardObjectUrl) state.shareCardObjectUrl = '';
+}
+
+function roundRect(ctx, x, y, width, height, radius) {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.lineTo(x + width - r, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r);
+  ctx.lineTo(x + width, y + height - r);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r, y + height);
+  ctx.lineTo(x + r, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r);
+  ctx.lineTo(x, y + r);
+  ctx.quadraticCurveTo(x, y, x + r, y);
+  ctx.closePath();
+}
+
+function slugify(value) {
+  return String(value || 'fjäril')
+    .normalize('NFKD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'fjaril';
+}
+
+function cssEscape(value) {
+  if (window.CSS?.escape) return CSS.escape(value);
+  return String(value).replace(/[^a-zA-Z0-9_-]/g, '\\$&');
 }
 
 function renderSyncChip(entry) {
@@ -1280,9 +2029,12 @@ async function importCollection(event) {
 }
 
 function resetCollectionForm() {
+  state.editingObservationId = '';
+  setCollectionFormMode('add');
   resetPendingImage();
   refs.photoInput.value = '';
   refs.note.value = '';
+  if (refs.collectionStory) refs.collectionStory.value = '';
   refs.speciesSelect.value = '';
   state.pendingLocation = null;
   renderPendingLocationState();
@@ -1367,15 +2119,19 @@ async function saveCustomSpecies() {
 }
 
 function normalizeLocalState() {
-  state.collection = state.collection.map((entry) => ({
-    syncStatus: 'local',
-    syncError: '',
-    remoteId: null,
-    imagePath: null,
-    imageMimeType: entry.imageMimeType || dataUrlMimeType(entry.imageData || '') || 'image/jpeg',
-    ...entry,
-    location: normalizeLocation(entry.location),
-  }));
+  state.collection = state.collection.map((entry) => {
+    const { tags, ...rest } = entry || {};
+    return {
+      syncStatus: 'local',
+      syncError: '',
+      remoteId: null,
+      imagePath: null,
+      imageMimeType: rest.imageMimeType || dataUrlMimeType(rest.imageData || '') || 'image/jpeg',
+      ...rest,
+      story: String(rest.story || '').trim(),
+      location: normalizeLocation(rest.location),
+    };
+  });
 
   state.customButterflies = state.customButterflies.map((entry) => ({
     syncStatus: 'local',
@@ -1556,9 +2312,6 @@ function drawToCanvas(imageBitmap, maxSide) {
   return canvas;
 }
 
-function canvasToBlob(canvas, mimeType, quality) {
-  return new Promise((resolve) => canvas.toBlob(resolve, mimeType, quality));
-}
 
 function loadImageBitmap(file) {
   if ('createImageBitmap' in window) return createImageBitmap(file, { imageOrientation: 'from-image' });
@@ -1916,7 +2669,7 @@ function mergeRemoteCustomButterflies(rows) {
       vetenskapligt_namn: row.scientific_name,
       beskrivning: row.description,
       bildkategori_commons_url: '',
-      taggar: existing?.taggar || buildCustomTags(row.description || ''),
+      taggar: Array.isArray(existing?.taggar) ? existing.taggar : [],
       images: [
         { url: existing?.images?.[0]?.url || '', path: row.image_1_path, author: 'Egen bild', license: 'Privat' },
         row.image_2_path ? { url: existing?.images?.[1]?.url || '', path: row.image_2_path, author: 'Egen bild', license: 'Privat' } : null,
@@ -1951,6 +2704,7 @@ function mergeRemoteSightings(rows) {
       imagePath: row.image_path,
       originalFileName: existing?.originalFileName || '',
       note: row.note || '',
+      story: row.story || existing?.story || '',
       date: row.spotted_at || row.created_at?.slice(0, 10) || new Date().toISOString().slice(0, 10),
       location: normalizeLocation(row.location || existing?.location),
       createdAt: row.created_at || existing?.createdAt || new Date().toISOString(),
@@ -2022,16 +2776,20 @@ async function syncObservation(entry) {
       await uploadStorageObject(imagePath, blob, blob.type || entry.imageMimeType || 'image/jpeg');
     }
 
+    const story = String(entry.story || '').trim();
+    const location = normalizeLocation(entry.location);
     const payload = {
       butterfly_id: entry.butterflyId,
       image_path: imagePath,
       note: entry.note || null,
+      story: story || null,
       spotted_at: entry.date || new Date().toISOString().slice(0, 10),
+      location: location || null,
     };
-    const location = normalizeLocation(entry.location);
-    if (location) payload.location = location;
 
-    const rows = await restInsert('/rest/v1/sightings', payload);
+    const rows = entry.remoteId
+      ? await restPatch(`/rest/v1/sightings?id=eq.${encodeURIComponent(entry.remoteId)}`, payload)
+      : await restInsert('/rest/v1/sightings', payload);
 
     const row = Array.isArray(rows) ? rows[0] : rows;
     entry.remoteId = row?.id || entry.remoteId;
